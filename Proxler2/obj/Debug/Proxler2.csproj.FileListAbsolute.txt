@@ -1,0 +1,13 @@
+d:\users\admin\documents\visual studio 2017\Projects\Proxler2\Proxler2\bin\Debug\Proxler2.exe.config
+d:\users\admin\documents\visual studio 2017\Projects\Proxler2\Proxler2\bin\Debug\Proxler2.exe
+d:\users\admin\documents\visual studio 2017\Projects\Proxler2\Proxler2\bin\Debug\Proxler2.pdb
+d:\users\admin\documents\visual studio 2017\Projects\Proxler2\Proxler2\obj\Debug\Proxler2.FrmMain.resources
+d:\users\admin\documents\visual studio 2017\Projects\Proxler2\Proxler2\obj\Debug\Proxler2.Properties.Resources.resources
+d:\users\admin\documents\visual studio 2017\Projects\Proxler2\Proxler2\obj\Debug\Proxler2.csproj.GenerateResource.Cache
+d:\users\admin\documents\visual studio 2017\Projects\Proxler2\Proxler2\obj\Debug\Proxler2.exe
+d:\users\admin\documents\visual studio 2017\Projects\Proxler2\Proxler2\obj\Debug\Proxler2.pdb
+d:\users\admin\documents\visual studio 2017\Projects\Proxler2\Proxler2\bin\Debug\Newtonsoft.Json.dll
+d:\users\admin\documents\visual studio 2017\Projects\Proxler2\Proxler2\bin\Debug\Newtonsoft.Json.xml
+d:\users\admin\documents\visual studio 2017\Projects\Proxler2\Proxler2\obj\Debug\Proxler2.csprojResolveAssemblyReference.cache
+d:\users\admin\documents\visual studio 2017\Projects\Proxler2\Proxler2\obj\Debug\Proxler2.FrmJD.resources
+d:\users\admin\documents\visual studio 2017\Projects\Proxler2\Proxler2\obj\Debug\Proxler2.FrmHoster.resources
