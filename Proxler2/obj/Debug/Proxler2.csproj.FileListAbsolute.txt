@@ -11,3 +11,17 @@ d:\users\admin\documents\visual studio 2017\Projects\Proxler2\Proxler2\bin\Debug
 d:\users\admin\documents\visual studio 2017\Projects\Proxler2\Proxler2\obj\Debug\Proxler2.csprojResolveAssemblyReference.cache
 d:\users\admin\documents\visual studio 2017\Projects\Proxler2\Proxler2\obj\Debug\Proxler2.FrmJD.resources
 d:\users\admin\documents\visual studio 2017\Projects\Proxler2\Proxler2\obj\Debug\Proxler2.FrmHoster.resources
+D:\Users\admin\Documents\Sourcetree\Proxler\Proxler2\bin\Debug\Proxler2.exe.config
+D:\Users\admin\Documents\Sourcetree\Proxler\Proxler2\bin\Debug\Proxler2.exe
+D:\Users\admin\Documents\Sourcetree\Proxler\Proxler2\bin\Debug\Proxler2.pdb
+D:\Users\admin\Documents\Sourcetree\Proxler\Proxler2\bin\Debug\Newtonsoft.Json.dll
+D:\Users\admin\Documents\Sourcetree\Proxler\Proxler2\bin\Debug\Newtonsoft.Json.xml
+D:\Users\admin\Documents\Sourcetree\Proxler\Proxler2\obj\Debug\Proxler2.csprojResolveAssemblyReference.cache
+D:\Users\admin\Documents\Sourcetree\Proxler\Proxler2\obj\Debug\Proxler2.FrmHoster.resources
+D:\Users\admin\Documents\Sourcetree\Proxler\Proxler2\obj\Debug\Proxler2.FrmJD.resources
+D:\Users\admin\Documents\Sourcetree\Proxler\Proxler2\obj\Debug\Proxler2.FrmMain.resources
+D:\Users\admin\Documents\Sourcetree\Proxler\Proxler2\obj\Debug\Proxler2.Properties.Resources.resources
+D:\Users\admin\Documents\Sourcetree\Proxler\Proxler2\obj\Debug\Proxler2.csproj.GenerateResource.Cache
+D:\Users\admin\Documents\Sourcetree\Proxler\Proxler2\obj\Debug\Proxler2.exe
+D:\Users\admin\Documents\Sourcetree\Proxler\Proxler2\obj\Debug\Proxler2.pdb
+D:\Users\admin\Documents\Sourcetree\Proxler\Proxler2\obj\Debug\Proxler2.csproj.CoreCompileInputs.cache

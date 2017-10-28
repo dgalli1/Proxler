@@ -43,8 +43,8 @@ namespace Proxler2
         private void bn_Download_Click(object sender, EventArgs e)
         {
             bn_Download.Enabled = false;
-             Que = new Queue<AniQue>();
-            int alleFolgen=0;
+            Que = new Queue<AniQue>();
+            int alleFolgen = 0;
 
             foreach (ListViewItem listviewitem in listView1.Items)
             {
@@ -68,7 +68,7 @@ namespace Proxler2
                 AniQue temp = new AniQue(listviewitem.SubItems[0].Text, (String)listviewitem.Tag, listviewitem.SubItems[1].Text, listviewitem.SubItems[2].Text, Lang, Int32.Parse(tb_delay.Text));
                 alleFolgen += temp.EpisodeCount();
                 Que.Enqueue(temp);
-          
+
             }
             AniQue anime = Que.Dequeue();
             accutalAnimeEp = anime.EpisodeCount();
@@ -98,13 +98,14 @@ namespace Proxler2
 
             String Animeinfo = wc.DownloadString("http://proxer.me/info/" + id + "/list/");
             int TitleStart = Animeinfo.IndexOf("name=\"description\"") + 65;
+
             int TitleEnde = Animeinfo.IndexOf(".", TitleStart);
             lb_AnimeName.Text = Animeinfo.Substring(TitleStart, TitleEnde - TitleStart);
             String json = wc.DownloadString("http://proxer.me/info/" + id + "/list/99" + "?format=json"); //99 Seite für genaue angabe über 50 Episoden
             try
             {
 
-
+                /*
                 RootObject ao = js.Deserialize<RootObject>(json);
                 Folgen = ao.end;
                 List<Datum> data = ao.data;
@@ -133,15 +134,25 @@ namespace Proxler2
                         Language.Add("English Dub");
                     }
                 }
+                */
+                Folgen = 99999;
+                lbFolgen.Text = Convert.ToString(Folgen);
+                List<String> Language = new List<String>();
+                Language.Add("German Sub");
+                Language.Add("German Dub");
+                Language.Add("English Sub");
+                Language.Add("English Dub");
                 ComboLanguage.Enabled = true;
                 tb_firstEpisode.Enabled = true;
                 tb_LastEpisode.Enabled = true;
                 ComboLanguage.DataSource = null;
                 ComboLanguage.DataSource = Language;
                 Language.Clear();
+
             }
-            catch
+            catch (Exception ex)
             {
+                throw ex;
                 lb_AnimeName.Text = "";
                 ComboLanguage.Enabled = false;
                 tb_firstEpisode.Enabled = false;
@@ -211,8 +222,7 @@ namespace Proxler2
 
         private void bn_add_Click(object sender, EventArgs e)
         {
-            fetchAniInfo();
-            ListViewItem temp = new ListViewItem(new String[4] { lb_AnimeName.Text, tb_firstEpisode.Text, tb_LastEpisode.Text, ComboLanguage.Text });
+            ListViewItem temp = new ListViewItem(new String[4] { lb_AnimeName.Text, tb_firstEpisode.Text, tb_LastEpisode.Text, this.ComboLanguage.GetItemText(this.ComboLanguage.SelectedItem) });
             temp.Tag = tb_ID.Text;
             listView1.Items.Add(temp);
 
@@ -236,35 +246,35 @@ namespace Proxler2
         {
             int episodeall = 0;
             AniQue Anime = e.Argument as AniQue;
-       
-                LinkGrabber grabber = new LinkGrabber(Anime.myID,Anime.myFirstEpisode,Anime.myLastEpisode,Anime.mySub,Anime.myDelay,backgroundWorker1);
-                int episode = Int32.Parse(Anime.myFirstEpisode); //todo;
-                var jdownloader = new JDownloader();
-                jdownloader.Connect(Data.Email, Data.Password);
-                jdownloader.EnumerateDevices();
-                var yourdevice = jdownloader.Devices.FirstOrDefault(x => x.Name == Data.DeviceName);
-                foreach (string Hoster in Data.HosterPriority)
-                {
-                    foreach (Hoster item in grabber.Links)
-                    {
-                        if (item.Episode == episode && item.isHoster(Hoster))
-                        {
-                            jdownloader.AddLink(yourdevice, item.Link, Anime.myName + " Ep. " + item.Episode);
-                            episode++;
-                            episodeall++;
-                        }
 
+            LinkGrabber grabber = new LinkGrabber(Anime.myID, Anime.myFirstEpisode, Anime.myLastEpisode, Anime.mySub, Anime.myDelay, backgroundWorker1);
+            int episode = Int32.Parse(Anime.myFirstEpisode); //todo;
+            var jdownloader = new JDownloader();
+            jdownloader.Connect(Data.Email, Data.Password);
+            jdownloader.EnumerateDevices();
+            var yourdevice = jdownloader.Devices.FirstOrDefault(x => x.Name == Data.DeviceName);
+            foreach (string Hoster in Data.HosterPriority)
+            {
+                foreach (Hoster item in grabber.Links)
+                {
+                    if (item.Episode == episode && item.isHoster(Hoster))
+                    {
+                        jdownloader.AddLink(yourdevice, item.Link, Anime.myName + " Ep. " + item.Episode);
+                        episode++;
+                        episodeall++;
                     }
+
                 }
-                jdownloader.Disconnect();
-            e.Result=Anime;
+            }
+            jdownloader.Disconnect();
+            e.Result = Anime;
         }
 
         private void backgroundWorker1_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-           AniQue old= e.Result as AniQue;
-           animeProgress= old.EpisodeCount();
-            if(Que.Count > 0)
+            AniQue old = e.Result as AniQue;
+            animeProgress = old.EpisodeCount();
+            if (Que.Count > 0)
             {
                 AniQue anime = Que.Dequeue();
                 accutalAnimeEp = anime.EpisodeCount();
@@ -282,7 +292,7 @@ namespace Proxler2
 
         private void backgroundWorker1_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
-            progressBar1.Value = e.ProgressPercentage+animeProgress;
+            progressBar1.Value = e.ProgressPercentage + animeProgress;
             lb_animeprogress.Text = e.ProgressPercentage + "/" + accutalAnimeEp;
             Console.Write("dfs");
         }
