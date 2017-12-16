@@ -65,35 +65,39 @@
             // 
             this.lb_AnimeName.AutoSize = true;
             this.lb_AnimeName.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lb_AnimeName.Location = new System.Drawing.Point(71, 101);
+            this.lb_AnimeName.Location = new System.Drawing.Point(182, 240);
+            this.lb_AnimeName.Margin = new System.Windows.Forms.Padding(8, 0, 8, 0);
             this.lb_AnimeName.Name = "lb_AnimeName";
-            this.lb_AnimeName.Size = new System.Drawing.Size(0, 16);
+            this.lb_AnimeName.Size = new System.Drawing.Size(0, 38);
             this.lb_AnimeName.TabIndex = 51;
             // 
             // lbDown
             // 
             this.lbDown.AutoSize = true;
-            this.lbDown.Location = new System.Drawing.Point(313, 426);
+            this.lbDown.Location = new System.Drawing.Point(835, 1015);
+            this.lbDown.Margin = new System.Windows.Forms.Padding(8, 0, 8, 0);
             this.lbDown.Name = "lbDown";
-            this.lbDown.Size = new System.Drawing.Size(0, 13);
+            this.lbDown.Size = new System.Drawing.Size(0, 32);
             this.lbDown.TabIndex = 49;
             // 
             // lbAnime
             // 
             this.lbAnime.AutoSize = true;
             this.lbAnime.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbAnime.Location = new System.Drawing.Point(5, 101);
+            this.lbAnime.Location = new System.Drawing.Point(13, 240);
+            this.lbAnime.Margin = new System.Windows.Forms.Padding(8, 0, 8, 0);
             this.lbAnime.Name = "lbAnime";
-            this.lbAnime.Size = new System.Drawing.Size(49, 16);
+            this.lbAnime.Size = new System.Drawing.Size(118, 38);
             this.lbAnime.TabIndex = 50;
             this.lbAnime.Text = "Anime:";
             // 
             // lbFolgen
             // 
             this.lbFolgen.AutoSize = true;
-            this.lbFolgen.Location = new System.Drawing.Point(278, 147);
+            this.lbFolgen.Location = new System.Drawing.Point(741, 350);
+            this.lbFolgen.Margin = new System.Windows.Forms.Padding(8, 0, 8, 0);
             this.lbFolgen.Name = "lbFolgen";
-            this.lbFolgen.Size = new System.Drawing.Size(118, 13);
+            this.lbFolgen.Size = new System.Drawing.Size(315, 32);
             this.lbFolgen.TabIndex = 42;
             this.lbFolgen.Text = "Keine Serie ausgewählt";
             // 
@@ -101,17 +105,19 @@
             // 
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(5, 145);
+            this.label9.Location = new System.Drawing.Point(13, 346);
+            this.label9.Margin = new System.Windows.Forms.Padding(8, 0, 8, 0);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(56, 16);
+            this.label9.Size = new System.Drawing.Size(134, 38);
             this.label9.TabIndex = 40;
             this.label9.Text = "Folgen: ";
             // 
             // btnSuchen
             // 
-            this.btnSuchen.Location = new System.Drawing.Point(473, 96);
+            this.btnSuchen.Location = new System.Drawing.Point(1261, 229);
+            this.btnSuchen.Margin = new System.Windows.Forms.Padding(8, 8, 8, 8);
             this.btnSuchen.Name = "btnSuchen";
-            this.btnSuchen.Size = new System.Drawing.Size(69, 26);
+            this.btnSuchen.Size = new System.Drawing.Size(184, 62);
             this.btnSuchen.TabIndex = 39;
             this.btnSuchen.Text = "Suchen";
             this.btnSuchen.UseVisualStyleBackColor = true;
@@ -121,17 +127,19 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(4, 68);
+            this.label6.Location = new System.Drawing.Point(4, 163);
+            this.label6.Margin = new System.Windows.Forms.Padding(8, 0, 8, 0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(81, 24);
+            this.label6.Size = new System.Drawing.Size(210, 55);
             this.label6.TabIndex = 38;
             this.label6.Text = "Serie ID:";
             // 
             // tb_ID
             // 
-            this.tb_ID.Location = new System.Drawing.Point(377, 70);
+            this.tb_ID.Location = new System.Drawing.Point(1005, 167);
+            this.tb_ID.Margin = new System.Windows.Forms.Padding(8, 8, 8, 8);
             this.tb_ID.Name = "tb_ID";
-            this.tb_ID.Size = new System.Drawing.Size(165, 20);
+            this.tb_ID.Size = new System.Drawing.Size(433, 38);
             this.tb_ID.TabIndex = 37;
             this.tb_ID.TextChanged += new System.EventHandler(this.tb_ID_TextChanged);
             // 
@@ -139,14 +147,17 @@
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(8, 222);
+            this.label8.Location = new System.Drawing.Point(21, 530);
+            this.label8.Margin = new System.Windows.Forms.Padding(8, 0, 8, 0);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(63, 18);
+            this.label8.Size = new System.Drawing.Size(161, 44);
             this.label8.TabIndex = 36;
             this.label8.Text = "Sprache";
             // 
             // ComboLanguage
             // 
+            this.ComboLanguage.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.ComboLanguage.CausesValidation = false;
             this.ComboLanguage.Enabled = false;
             this.ComboLanguage.FormattingEnabled = true;
             this.ComboLanguage.Items.AddRange(new object[] {
@@ -154,36 +165,40 @@
             "Eng Dub",
             "Ger Sub",
             "Ger Dub"});
-            this.ComboLanguage.Location = new System.Drawing.Point(104, 223);
+            this.ComboLanguage.Location = new System.Drawing.Point(277, 532);
+            this.ComboLanguage.Margin = new System.Windows.Forms.Padding(8, 8, 8, 8);
             this.ComboLanguage.Name = "ComboLanguage";
-            this.ComboLanguage.Size = new System.Drawing.Size(131, 21);
+            this.ComboLanguage.Size = new System.Drawing.Size(343, 39);
             this.ComboLanguage.TabIndex = 35;
             this.ComboLanguage.SelectedIndexChanged += new System.EventHandler(this.ComboLanguage_SelectedIndexChanged);
             // 
             // tb_LastEpisode
             // 
             this.tb_LastEpisode.Enabled = false;
-            this.tb_LastEpisode.Location = new System.Drawing.Point(377, 180);
+            this.tb_LastEpisode.Location = new System.Drawing.Point(1005, 429);
+            this.tb_LastEpisode.Margin = new System.Windows.Forms.Padding(8, 8, 8, 8);
             this.tb_LastEpisode.Name = "tb_LastEpisode";
-            this.tb_LastEpisode.Size = new System.Drawing.Size(165, 20);
+            this.tb_LastEpisode.Size = new System.Drawing.Size(433, 38);
             this.tb_LastEpisode.TabIndex = 34;
             this.tb_LastEpisode.Validating += new System.ComponentModel.CancelEventHandler(this.tb_LastEpisode_Validating);
             // 
             // tb_firstEpisode
             // 
             this.tb_firstEpisode.Enabled = false;
-            this.tb_firstEpisode.Location = new System.Drawing.Point(104, 180);
+            this.tb_firstEpisode.Location = new System.Drawing.Point(277, 429);
+            this.tb_firstEpisode.Margin = new System.Windows.Forms.Padding(8, 8, 8, 8);
             this.tb_firstEpisode.Name = "tb_firstEpisode";
-            this.tb_firstEpisode.Size = new System.Drawing.Size(131, 20);
+            this.tb_firstEpisode.Size = new System.Drawing.Size(343, 38);
             this.tb_firstEpisode.TabIndex = 33;
             this.tb_firstEpisode.Validating += new System.ComponentModel.CancelEventHandler(this.tb_firstEpisode_Validating);
             // 
             // bn_Download
             // 
             this.bn_Download.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.bn_Download.Location = new System.Drawing.Point(7, 370);
+            this.bn_Download.Location = new System.Drawing.Point(19, 882);
+            this.bn_Download.Margin = new System.Windows.Forms.Padding(8, 8, 8, 8);
             this.bn_Download.Name = "bn_Download";
-            this.bn_Download.Size = new System.Drawing.Size(227, 32);
+            this.bn_Download.Size = new System.Drawing.Size(605, 76);
             this.bn_Download.TabIndex = 32;
             this.bn_Download.Text = "Zu JDownloader hinzufügen";
             this.bn_Download.UseVisualStyleBackColor = true;
@@ -193,9 +208,10 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(278, 179);
+            this.label5.Location = new System.Drawing.Point(741, 426);
+            this.label5.Margin = new System.Windows.Forms.Padding(8, 0, 8, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(71, 18);
+            this.label5.Size = new System.Drawing.Size(180, 44);
             this.label5.TabIndex = 31;
             this.label5.Text = "- Episode";
             // 
@@ -203,9 +219,10 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(9, 179);
+            this.label4.Location = new System.Drawing.Point(24, 426);
+            this.label4.Margin = new System.Windows.Forms.Padding(8, 0, 8, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(62, 18);
+            this.label4.Size = new System.Drawing.Size(157, 44);
             this.label4.TabIndex = 30;
             this.label4.Text = "Episode";
             // 
@@ -213,17 +230,19 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(1, 9);
+            this.label1.Location = new System.Drawing.Point(-4, 22);
+            this.label1.Margin = new System.Windows.Forms.Padding(8, 0, 8, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(128, 39);
+            this.label1.Size = new System.Drawing.Size(322, 101);
             this.label1.TabIndex = 29;
             this.label1.Text = "Proxler";
             // 
             // bn_Jdownloader
             // 
-            this.bn_Jdownloader.Location = new System.Drawing.Point(7, 416);
+            this.bn_Jdownloader.Location = new System.Drawing.Point(19, 992);
+            this.bn_Jdownloader.Margin = new System.Windows.Forms.Padding(8, 8, 8, 8);
             this.bn_Jdownloader.Name = "bn_Jdownloader";
-            this.bn_Jdownloader.Size = new System.Drawing.Size(227, 37);
+            this.bn_Jdownloader.Size = new System.Drawing.Size(605, 88);
             this.bn_Jdownloader.TabIndex = 52;
             this.bn_Jdownloader.Text = "JD-Account Verwalten";
             this.bn_Jdownloader.UseVisualStyleBackColor = true;
@@ -231,9 +250,10 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(294, 370);
+            this.button1.Location = new System.Drawing.Point(784, 882);
+            this.button1.Margin = new System.Windows.Forms.Padding(8, 8, 8, 8);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(247, 32);
+            this.button1.Size = new System.Drawing.Size(659, 76);
             this.button1.TabIndex = 53;
             this.button1.Text = "Hoster Priority";
             this.button1.UseVisualStyleBackColor = true;
@@ -243,26 +263,29 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(297, 426);
+            this.label3.Location = new System.Drawing.Point(792, 1015);
+            this.label3.Margin = new System.Windows.Forms.Padding(8, 0, 8, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(80, 18);
+            this.label3.Size = new System.Drawing.Size(205, 44);
             this.label3.TabIndex = 55;
             this.label3.Text = "Delay (ms)";
             // 
             // tb_delay
             // 
-            this.tb_delay.Location = new System.Drawing.Point(393, 426);
+            this.tb_delay.Location = new System.Drawing.Point(1048, 1015);
+            this.tb_delay.Margin = new System.Windows.Forms.Padding(8, 8, 8, 8);
             this.tb_delay.Name = "tb_delay";
-            this.tb_delay.Size = new System.Drawing.Size(131, 20);
+            this.tb_delay.Size = new System.Drawing.Size(343, 38);
             this.tb_delay.TabIndex = 56;
             this.tb_delay.Text = "10000";
             this.tb_delay.Validating += new System.ComponentModel.CancelEventHandler(this.tb_delay_Validating);
             // 
             // bn_add
             // 
-            this.bn_add.Location = new System.Drawing.Point(460, 267);
+            this.bn_add.Location = new System.Drawing.Point(1227, 637);
+            this.bn_add.Margin = new System.Windows.Forms.Padding(8, 8, 8, 8);
             this.bn_add.Name = "bn_add";
-            this.bn_add.Size = new System.Drawing.Size(81, 23);
+            this.bn_add.Size = new System.Drawing.Size(216, 54);
             this.bn_add.TabIndex = 58;
             this.bn_add.Text = "Hinzufügen";
             this.bn_add.UseVisualStyleBackColor = true;
@@ -270,9 +293,10 @@
             // 
             // bn_remove
             // 
-            this.bn_remove.Location = new System.Drawing.Point(460, 310);
+            this.bn_remove.Location = new System.Drawing.Point(1227, 739);
+            this.bn_remove.Margin = new System.Windows.Forms.Padding(8, 8, 8, 8);
             this.bn_remove.Name = "bn_remove";
-            this.bn_remove.Size = new System.Drawing.Size(81, 23);
+            this.bn_remove.Size = new System.Drawing.Size(216, 54);
             this.bn_remove.TabIndex = 59;
             this.bn_remove.Text = "Entfernen";
             this.bn_remove.UseVisualStyleBackColor = true;
@@ -289,9 +313,10 @@
             this.listView1.FullRowSelect = true;
             this.listView1.GridLines = true;
             this.listView1.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
-            this.listView1.Location = new System.Drawing.Point(7, 267);
+            this.listView1.Location = new System.Drawing.Point(19, 637);
+            this.listView1.Margin = new System.Windows.Forms.Padding(8, 8, 8, 8);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(447, 97);
+            this.listView1.Size = new System.Drawing.Size(1185, 226);
             this.listView1.TabIndex = 60;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.SelectedIndexChanged += new System.EventHandler(this.listView1_SelectedIndexChanged);
@@ -322,31 +347,34 @@
             // 
             // progressBar1
             // 
-            this.progressBar1.Location = new System.Drawing.Point(7, 478);
+            this.progressBar1.Location = new System.Drawing.Point(19, 1139);
+            this.progressBar1.Margin = new System.Windows.Forms.Padding(8, 8, 8, 8);
             this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(535, 23);
+            this.progressBar1.Size = new System.Drawing.Size(1427, 54);
             this.progressBar1.TabIndex = 61;
             // 
             // lb_animeprogress
             // 
             this.lb_animeprogress.AutoSize = true;
-            this.lb_animeprogress.Location = new System.Drawing.Point(313, 504);
+            this.lb_animeprogress.Location = new System.Drawing.Point(835, 1201);
+            this.lb_animeprogress.Margin = new System.Windows.Forms.Padding(8, 0, 8, 0);
             this.lb_animeprogress.Name = "lb_animeprogress";
-            this.lb_animeprogress.Size = new System.Drawing.Size(0, 13);
+            this.lb_animeprogress.Size = new System.Drawing.Size(0, 32);
             this.lb_animeprogress.TabIndex = 62;
             // 
             // lb_animestatus
             // 
-            this.lb_animestatus.Location = new System.Drawing.Point(135, 504);
+            this.lb_animestatus.Location = new System.Drawing.Point(360, 1201);
+            this.lb_animestatus.Margin = new System.Windows.Forms.Padding(8, 0, 8, 0);
             this.lb_animestatus.Name = "lb_animestatus";
-            this.lb_animestatus.Size = new System.Drawing.Size(153, 23);
+            this.lb_animestatus.Size = new System.Drawing.Size(408, 54);
             this.lb_animestatus.TabIndex = 63;
             // 
             // FrmMain
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(16F, 31F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(647, 526);
+            this.ClientSize = new System.Drawing.Size(1725, 1254);
             this.Controls.Add(this.lb_animestatus);
             this.Controls.Add(this.lb_animeprogress);
             this.Controls.Add(this.progressBar1);
@@ -373,6 +401,7 @@
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label1);
+            this.Margin = new System.Windows.Forms.Padding(8, 8, 8, 8);
             this.Name = "FrmMain";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);

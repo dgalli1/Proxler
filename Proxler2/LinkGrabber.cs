@@ -22,9 +22,12 @@ namespace Proxler2
 
         private void FetchEpisode(string linkfirst, string id, int episode, string sub)
         {
+
             bool streamfound = false;
             using (WebClient client = new WebClient()) // WebClient class inherits IDisposable
             {
+                client.Headers.Add(HttpRequestHeader.Cookie, "adult=1"); //if this cookie is set the pages over 18 can get accessed (test anime 44 => Elfen Lied)
+
                 string episodelink = linkfirst + id + "/" + episode + "/" + sub;
                 string htmlCode = client.DownloadString(episodelink);
                 char[] delimiters = new char[] { '\r', '\n' };
