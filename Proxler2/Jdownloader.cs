@@ -322,7 +322,7 @@ namespace Proxler2
             p.rid = GetUniqueRid();
             p.ApiVer = ApiVer;
             string json = Newtonsoft.Json.JsonConvert.SerializeObject(p);
-            File.WriteAllText("json.txt", json);
+         
 
             json = Encrypt(json, _deviceEncryptionToken);
             string url = ApiUrl + query;

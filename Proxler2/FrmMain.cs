@@ -9,7 +9,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Web.Script.Serialization;
-
+using CloudFlareUtilities;
+using System.Net.Http;
 
 namespace Proxler2
 {
@@ -18,6 +19,7 @@ namespace Proxler2
         private LoginData Data = new LoginData();
         private int Folgen;
         private int animeProgress = 0;
+        private HttpClient client;//set global client i don't think this is how you do this but it saves me from solving cloudflare multiple times
         private int accutalAnimeEp = 0;
         Queue<AniQue> Que;
         public FrmMain(string id)
@@ -26,7 +28,7 @@ namespace Proxler2
             if(id!="-1")//id passed by argument
             {
                 tb_ID.Text = id;
-                fetchAniInfo(id);
+                fetchAniInfoAsync(id);
             }
         }
 
@@ -92,14 +94,43 @@ namespace Proxler2
             Data.HosterPriority = FrmHoster.HosterPriority;
             Data.SaveHosterToFile();
         }
-        private void fetchAniInfo(string id)
+        private async Task fetchAniInfoAsync(string id)
         {
-            WebClient wc = new WebClient();
-            wc.Headers.Add(HttpRequestHeader.Cookie, "+adult=1"); //if this cookie is set the pages over 18 can get accessed (test anime 44 => Elfen Lied)
+            String Animeinfo = "";
+            var cookieContainer = new CookieContainer();
+            ClearanceHandler handler = new ClearanceHandler();                // Create the clearance handler.
+            HttpClientHandler innerHandler = handler.InnerHandler as HttpClientHandler;
+            innerHandler.AllowAutoRedirect = true;
+            var baseAdress = new Uri("http://proxer.me/");
+            innerHandler.CookieContainer.Add(baseAdress, new Cookie("adult", "1"));//wtf
+            client = new HttpClient(handler);
+            try
+            {
+
+
+                // Create a HttpClient that uses the handler to bypass CloudFlare's JavaScript challange.
+
+                // Use the HttpClient as usual. Any JS challenge will be solved automatically for you.
+                
+                  Animeinfo = await client.GetStringAsync("http://proxer.me/info/" + id + "/list/");
+            }
+     
+            catch (AggregateException ex) when (ex.InnerException is CloudFlareClearanceException)
+            {
+                MessageBox.Show("Some cloudflare bs happend 1");
+                return;
+            }
+            catch (AggregateException ex) when (ex.InnerException is TaskCanceledException)
+            {
+                MessageBox.Show("Some cloudflare bs happend 2");
+                return;
+                // Looks like we ran into a timeout. Too many clearance attempts?
+                // Maybe you should increase client.Timeout as each attempt will take about five seconds.
+            }
+            //   wc.Headers.Add(HttpRequestHeader.Cookie, "+adult=1"); //if this cookie is set the pages over 18 can get accessed (test anime 44 => Elfen Lied) //needs rework because use of HttpClient
             List<string> subtyp = new List<String>();
             List<string> messages = new List<string>();
-
-            String Animeinfo = wc.DownloadString("http://proxer.me/info/" + id + "/list/");
+           
             int TitleStart = Animeinfo.IndexOf("name=\"description\"") + 65;
 
             int TitleEnde = Animeinfo.IndexOf(".", TitleStart);
@@ -125,8 +156,7 @@ namespace Proxler2
                     }
                 }
                 catch { page = 1; }                                                                         //catches error if only one page of episodes is available.
-
-                String EpUebersichtQC = wc.DownloadString("http://proxer.me/info/" + id + "/list/" + page);//new page for a more accurate determination of the last episode is converted to a string.
+                String EpUebersichtQC = await client.GetStringAsync("http://proxer.me/info/" + id + "/list/" + page);//new page for a more accurate determination of the last episode is converted to a string.
                 EpStart = EpUebersichtQC.LastIndexOf(AnieName + " Episode") + AnieName.Length + 9;
                 EpEnd = EpUebersichtQC.LastIndexOf(AnieName + " Episode") + AnieName.Length + 12;
                 String FolgenAnz = EpUebersichtQC.Substring(EpStart, EpEnd - EpStart);                    //Accurate last episode is now in FolgenAnz 
@@ -196,10 +226,10 @@ namespace Proxler2
                 tb_LastEpisode.Enabled = false;
             }
         }
-        private void btnSuchen_Click(object sender, EventArgs e)
+        private async void btnSuchen_Click(object sender, EventArgs e)
         {
             string id = tb_ID.Text;
-            fetchAniInfo(id);
+            fetchAniInfoAsync(id);
         }
 
         private void tb_ID_TextChanged(object sender, EventArgs e)
@@ -284,8 +314,8 @@ namespace Proxler2
         {
             int episodeall = 0;
             AniQue Anime = e.Argument as AniQue;
-       
-                LinkGrabber grabber = new LinkGrabber(Anime.myID,Anime.myFirstEpisode,Anime.myLastEpisode,Anime.mySub,Anime.myDelay,backgroundWorker1);
+            LinkGrabber grabber = null;
+                grabber = new LinkGrabber(Anime.myID, Anime.myFirstEpisode, Anime.myLastEpisode, Anime.mySub, Anime.myDelay, backgroundWorker1, client);
                 int episode = Int32.Parse(Anime.myFirstEpisode); //todo;
                 var jdownloader = new JDownloader();
                 jdownloader.Connect(Data.Email, Data.Password);

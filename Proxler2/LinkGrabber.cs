@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Net;
+using System.Net.Http;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -17,19 +18,19 @@ namespace Proxler2
         private string myFirstEpisode;
         private string myLastEpisode;
         private string mySub;
+        int mydelay;
+        private HttpClient globClient;
         public List<Hoster> Links;
         private BackgroundWorker backgroundWorker1;
 
-        private void FetchEpisode(string linkfirst, string id, int episode, string sub)
+        private void FetchEpisodeAsync(string linkfirst, string id, int episode, string sub)
         {
 
             bool streamfound = false;
-            using (WebClient client = new WebClient()) // WebClient class inherits IDisposable
-            {
-                client.Headers.Add(HttpRequestHeader.Cookie, "adult=1"); //if this cookie is set the pages over 18 can get accessed (test anime 44 => Elfen Lied)
-
+            //   client.Headers.Add(HttpRequestHeader.Cookie, "adult=1"); //if this cookie is set the pages over 18 can get accessed (test anime 44 => Elfen Lied) todo use in HttpClient //client already created in main thread
+            
                 string episodelink = linkfirst + id + "/" + episode + "/" + sub;
-                string htmlCode = client.DownloadString(episodelink);
+                string htmlCode =  globClient.GetStringAsync(episodelink).Result;
                 char[] delimiters = new char[] { '\r', '\n' };
                 string[] htmlcodeLines = htmlCode.Split(delimiters);
                 foreach (string line in htmlcodeLines)
@@ -59,47 +60,47 @@ namespace Proxler2
                         }
 
                     }
-                   
-                   
-                       
-                    
-                }
 
+
+
+
+                
             }
+
             if(!streamfound)
             {
-                MessageBox.Show("Achtung Spamschutz Aktiv Rufe Proxer auf und klicke Auf denn Recapchan klicke danach auf okey");
-                FetchEpisode(linkfirst, id, episode, sub);
+                MessageBox.Show("Kein Streamgefunden versuche erneut");
+                FetchEpisodeAsync(linkfirst, id, episode, sub);
             }
         }
-        public LinkGrabber(string id, string firstepisode,string lastepisode, string sub,int delay, BackgroundWorker backgroundWorker1)
+        public LinkGrabber(string id, string firstepisode,string lastepisode, string sub,int delay, BackgroundWorker backgroundWorker1, HttpClient client)
         {
-            string myId = id;
-            string myFirstEpisode =firstepisode;
-            string myLastEpisode = lastepisode;
-            string mySub =sub;
-            int episodeall = 0;
-            int intlastepisode = int.Parse(lastepisode);
+            globClient = client;
+            myId = id;
+            myFirstEpisode =firstepisode;
+            myLastEpisode = lastepisode;
+            mySub =sub;
+            mydelay = delay;
             Links = new List<Hoster>();
             this.backgroundWorker1 = backgroundWorker1;
-
-            int episode = int.Parse(firstepisode);
-            string linkfirst = "http://proxer.me/watch/";
-            while (intlastepisode >= episode)
-            {
-                FetchEpisode(linkfirst, id, episode, sub);
-                 Thread.Sleep(delay);
-                Console.WriteLine(episode + " fetched");
-                episodeall++;
-                episode++;
-                backgroundWorker1.ReportProgress(episodeall);
-         
-            }
-
-
-
+            this.StartWork();
         }
 
+        private void StartWork()
+        {
+            int episode = int.Parse(myFirstEpisode);
+            string linkfirst = "http://proxer.me/watch/";
+            int intlastepisode = int.Parse(myLastEpisode);
+            int episodeall = 0;
+            while (intlastepisode >= episode)
+            {
+                FetchEpisodeAsync(linkfirst, myId, episode, mySub);
+                Thread.Sleep(mydelay);
+                episodeall++;
+                episode++;
+               backgroundWorker1.ReportProgress(episodeall);
 
+            }
+        }
     }
 }
