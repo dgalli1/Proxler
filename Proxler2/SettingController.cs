@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Proxler2
 {
-    public class LoginData
+    public class SettingController
     {
         private string myEmail;
         public string Email
@@ -33,29 +33,38 @@ namespace Proxler2
             get { return myHosterPriority; }
             set { myHosterPriority = value; } 
         }
+        public String ytDlPath
+        {
+            get { return myytDlPath; }
+        }
+        public int youtubeDLVersion { get; internal set; }
+        private string myytDlPath;
         private string FilePath;
         private string HosterPath;
-        public LoginData()
+        public SettingController()
         {
 
         }
-        public LoginData(string Email,string Password, string DeviceName)
+        public SettingController(string Email,string Password, string DeviceName)
         {
             myEmail = Email;
             myPassword = Password;
             myDeviceName = DeviceName;
+
         }
-        
+
         public void LoadFromFile()
         {
+            try { 
             // The folder for the roaming current user 
             string folder = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
 
             // Combine the base folder with your specific folder....
             string specificFolder = Path.Combine(folder, "Proxler");
+                myytDlPath = Path.Combine(specificFolder, "youtube-dl.exe");//set a path so it can download
 
-            // Check if folder exists and if not, create it
-            if (!Directory.Exists(specificFolder))
+                // Check if folder exists and if not, create it
+                if (!Directory.Exists(specificFolder))
                 Directory.CreateDirectory(specificFolder);
             HosterPath = Path.Combine(specificFolder, "ProxlerHoster.txt");
              FilePath = Path.Combine(specificFolder, "ProxlerSettings.txt");
@@ -66,7 +75,11 @@ namespace Proxler2
                 myEmail = credits[0];
                 myPassword = credits[1];
                 myDeviceName = credits[2];
-            }
+                youtubeDLVersion =Int32.Parse(credits[3]);
+            } else
+                {
+                    youtubeDLVersion = 0;
+                }
             string[] hosters;
             if (File.Exists(HosterPath))
             {
@@ -77,7 +90,11 @@ namespace Proxler2
               hosters = "hellsmedia;mp4upload;myvi;novamov;openload;proxer-stream;rutube;streamcloud;videoweed;yourupload".Split(';');
             }
             myHosterPriority = new List<string>(hosters);
-
+            } 
+            catch
+            {
+                System.Windows.Forms.MessageBox.Show("Your Save file is corrupted");
+            }
         }
 
         public void SaveHosterToFile()
@@ -87,7 +104,7 @@ namespace Proxler2
 
         public void SaveToFile()
         {
-           File.WriteAllText(FilePath, myEmail+";"+myPassword+";"+myDeviceName);
+            File.WriteAllText(FilePath, myEmail + ";" + myPassword + ";" + myDeviceName + ";" + this.youtubeDLVersion);
         }
     }
 }

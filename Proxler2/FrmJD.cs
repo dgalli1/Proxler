@@ -12,8 +12,8 @@ namespace Proxler2
 {
     public partial class FrmJD : Form
     {
-        public LoginData Data;
-        public FrmJD(LoginData Data)
+        public SettingController Data;
+        public FrmJD(SettingController Data)
         {
             InitializeComponent();
             this.Data = Data;

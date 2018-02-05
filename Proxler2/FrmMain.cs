@@ -10,12 +10,13 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using CloudFlareUtilities;
 using System.Net.Http;
+using Octokit;
 
 namespace Proxler2
 {
     public partial class FrmMain : Form
     {
-        private LoginData Data = new LoginData();
+        private SettingController Data = new SettingController();
         private int Folgen;
         private int animeProgress = 0;
         private HttpClient client;//set global client i don't think this is how you do this but it saves me from solving cloudflare multiple times
@@ -35,9 +36,43 @@ namespace Proxler2
         {
             Data.LoadFromFile();
             listView1.View = View.Details;
+            Task Updater = AsyncUpdate(Data);
 
         }
 
+        private async static Task AsyncUpdate(SettingController Settings)
+        {
+
+            var client = new GitHubClient(new ProductHeaderValue("what_the_fuck_do_i_have_to_write_here"));
+            var releases = await client.Repository.Release.GetAll("rg3", "youtube-dl");
+            var latest = releases[0];
+            if(latest.Id!=Settings.youtubeDLVersion)
+            {//start replace old file
+                foreach (var item in latest.Assets)
+                {
+                    if(item.Name== "youtube-dl.exe")
+                    {
+                        using (WebClient webClient = new WebClient())
+                        {
+                            try {
+                                Console.WriteLine(Settings.ytDlPath);
+                                Console.WriteLine(item.BrowserDownloadUrl);
+                                webClient.DownloadFile(item.BrowserDownloadUrl, Settings.ytDlPath);
+                                Settings.youtubeDLVersion = latest.Id;
+                                Settings.SaveToFile();
+
+                            }
+                            catch
+                            {
+                                MessageBox.Show("Automatic Update from Yt-dl failed");
+                            }
+                        }
+                    }
+                }
+            }
+            //add check if run on windows
+
+        }
         private void bn_Jdownloader_Click(object sender, EventArgs e)
         {
             FrmJD myForm2 = new FrmJD(Data);

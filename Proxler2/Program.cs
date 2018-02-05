@@ -22,7 +22,7 @@ namespace Proxler2
             id = id.Replace("/", "");
             }
             RegistryKey key = Registry.ClassesRoot.OpenSubKey("proxler");  //open myApp protocol's subkey
-            string myAppPath=Application.ExecutablePath;
+            string myAppPath= System.Windows.Forms.Application.ExecutablePath;
             if (key == null)  //if the protocol is not registered yet...we register it
             {
                 try
@@ -40,11 +40,15 @@ namespace Proxler2
                 }
                 //%1 represents the argument - this tells windows to open this program with an argument / parameter
             }
+            //check for updates on yt-dl
+          //  Console.WriteLine(GetReleases("rg3", "youtube-dl"));
+            //var latest = releases.Result[0];
 
             key.Close();
-            Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FrmMain(id));
+            System.Windows.Forms.Application.EnableVisualStyles();
+            System.Windows.Forms.Application.SetCompatibleTextRenderingDefault(false);
+            System.Windows.Forms.Application.Run(new FrmMain(id));
         }
+
     }
 }
