@@ -59,6 +59,9 @@
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.lb_animeprogress = new System.Windows.Forms.Label();
             this.lb_animestatus = new System.Windows.Forms.Label();
+            this.progressBar2 = new System.Windows.Forms.ProgressBar();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lb_AnimeName
@@ -115,7 +118,7 @@
             // btnSuchen
             // 
             this.btnSuchen.Location = new System.Drawing.Point(1261, 229);
-            this.btnSuchen.Margin = new System.Windows.Forms.Padding(8, 8, 8, 8);
+            this.btnSuchen.Margin = new System.Windows.Forms.Padding(8);
             this.btnSuchen.Name = "btnSuchen";
             this.btnSuchen.Size = new System.Drawing.Size(184, 62);
             this.btnSuchen.TabIndex = 39;
@@ -137,7 +140,7 @@
             // tb_ID
             // 
             this.tb_ID.Location = new System.Drawing.Point(1005, 167);
-            this.tb_ID.Margin = new System.Windows.Forms.Padding(8, 8, 8, 8);
+            this.tb_ID.Margin = new System.Windows.Forms.Padding(8);
             this.tb_ID.Name = "tb_ID";
             this.tb_ID.Size = new System.Drawing.Size(433, 38);
             this.tb_ID.TabIndex = 37;
@@ -166,7 +169,7 @@
             "Ger Sub",
             "Ger Dub"});
             this.ComboLanguage.Location = new System.Drawing.Point(277, 532);
-            this.ComboLanguage.Margin = new System.Windows.Forms.Padding(8, 8, 8, 8);
+            this.ComboLanguage.Margin = new System.Windows.Forms.Padding(8);
             this.ComboLanguage.Name = "ComboLanguage";
             this.ComboLanguage.Size = new System.Drawing.Size(343, 39);
             this.ComboLanguage.TabIndex = 35;
@@ -176,7 +179,7 @@
             // 
             this.tb_LastEpisode.Enabled = false;
             this.tb_LastEpisode.Location = new System.Drawing.Point(1005, 429);
-            this.tb_LastEpisode.Margin = new System.Windows.Forms.Padding(8, 8, 8, 8);
+            this.tb_LastEpisode.Margin = new System.Windows.Forms.Padding(8);
             this.tb_LastEpisode.Name = "tb_LastEpisode";
             this.tb_LastEpisode.Size = new System.Drawing.Size(433, 38);
             this.tb_LastEpisode.TabIndex = 34;
@@ -186,7 +189,7 @@
             // 
             this.tb_firstEpisode.Enabled = false;
             this.tb_firstEpisode.Location = new System.Drawing.Point(277, 429);
-            this.tb_firstEpisode.Margin = new System.Windows.Forms.Padding(8, 8, 8, 8);
+            this.tb_firstEpisode.Margin = new System.Windows.Forms.Padding(8);
             this.tb_firstEpisode.Name = "tb_firstEpisode";
             this.tb_firstEpisode.Size = new System.Drawing.Size(343, 38);
             this.tb_firstEpisode.TabIndex = 33;
@@ -196,7 +199,7 @@
             // 
             this.bn_Download.Cursor = System.Windows.Forms.Cursors.Hand;
             this.bn_Download.Location = new System.Drawing.Point(19, 882);
-            this.bn_Download.Margin = new System.Windows.Forms.Padding(8, 8, 8, 8);
+            this.bn_Download.Margin = new System.Windows.Forms.Padding(8);
             this.bn_Download.Name = "bn_Download";
             this.bn_Download.Size = new System.Drawing.Size(605, 76);
             this.bn_Download.TabIndex = 32;
@@ -240,18 +243,18 @@
             // bn_Jdownloader
             // 
             this.bn_Jdownloader.Location = new System.Drawing.Point(19, 992);
-            this.bn_Jdownloader.Margin = new System.Windows.Forms.Padding(8, 8, 8, 8);
+            this.bn_Jdownloader.Margin = new System.Windows.Forms.Padding(8);
             this.bn_Jdownloader.Name = "bn_Jdownloader";
             this.bn_Jdownloader.Size = new System.Drawing.Size(605, 88);
             this.bn_Jdownloader.TabIndex = 52;
-            this.bn_Jdownloader.Text = "JD-Account Verwalten";
+            this.bn_Jdownloader.Text = "Einstellungen";
             this.bn_Jdownloader.UseVisualStyleBackColor = true;
             this.bn_Jdownloader.Click += new System.EventHandler(this.bn_Jdownloader_Click);
             // 
             // button1
             // 
             this.button1.Location = new System.Drawing.Point(784, 882);
-            this.button1.Margin = new System.Windows.Forms.Padding(8, 8, 8, 8);
+            this.button1.Margin = new System.Windows.Forms.Padding(8);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(659, 76);
             this.button1.TabIndex = 53;
@@ -273,7 +276,7 @@
             // tb_delay
             // 
             this.tb_delay.Location = new System.Drawing.Point(1048, 1015);
-            this.tb_delay.Margin = new System.Windows.Forms.Padding(8, 8, 8, 8);
+            this.tb_delay.Margin = new System.Windows.Forms.Padding(8);
             this.tb_delay.Name = "tb_delay";
             this.tb_delay.Size = new System.Drawing.Size(343, 38);
             this.tb_delay.TabIndex = 56;
@@ -283,7 +286,7 @@
             // bn_add
             // 
             this.bn_add.Location = new System.Drawing.Point(1227, 637);
-            this.bn_add.Margin = new System.Windows.Forms.Padding(8, 8, 8, 8);
+            this.bn_add.Margin = new System.Windows.Forms.Padding(8);
             this.bn_add.Name = "bn_add";
             this.bn_add.Size = new System.Drawing.Size(216, 54);
             this.bn_add.TabIndex = 58;
@@ -294,7 +297,7 @@
             // bn_remove
             // 
             this.bn_remove.Location = new System.Drawing.Point(1227, 739);
-            this.bn_remove.Margin = new System.Windows.Forms.Padding(8, 8, 8, 8);
+            this.bn_remove.Margin = new System.Windows.Forms.Padding(8);
             this.bn_remove.Name = "bn_remove";
             this.bn_remove.Size = new System.Drawing.Size(216, 54);
             this.bn_remove.TabIndex = 59;
@@ -314,7 +317,7 @@
             this.listView1.GridLines = true;
             this.listView1.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
             this.listView1.Location = new System.Drawing.Point(19, 637);
-            this.listView1.Margin = new System.Windows.Forms.Padding(8, 8, 8, 8);
+            this.listView1.Margin = new System.Windows.Forms.Padding(8);
             this.listView1.Name = "listView1";
             this.listView1.Size = new System.Drawing.Size(1185, 226);
             this.listView1.TabIndex = 60;
@@ -347,8 +350,8 @@
             // 
             // progressBar1
             // 
-            this.progressBar1.Location = new System.Drawing.Point(19, 1139);
-            this.progressBar1.Margin = new System.Windows.Forms.Padding(8, 8, 8, 8);
+            this.progressBar1.Location = new System.Drawing.Point(54, 1310);
+            this.progressBar1.Margin = new System.Windows.Forms.Padding(8);
             this.progressBar1.Name = "progressBar1";
             this.progressBar1.Size = new System.Drawing.Size(1427, 54);
             this.progressBar1.TabIndex = 61;
@@ -370,11 +373,40 @@
             this.lb_animestatus.Size = new System.Drawing.Size(408, 54);
             this.lb_animestatus.TabIndex = 63;
             // 
+            // progressBar2
+            // 
+            this.progressBar2.Location = new System.Drawing.Point(48, 1179);
+            this.progressBar2.Margin = new System.Windows.Forms.Padding(8);
+            this.progressBar2.Name = "progressBar2";
+            this.progressBar2.Size = new System.Drawing.Size(1427, 54);
+            this.progressBar2.TabIndex = 64;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(48, 1136);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(223, 32);
+            this.label2.TabIndex = 65;
+            this.label2.Text = "Fortschritt Datei:";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(48, 1270);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(255, 32);
+            this.label7.TabIndex = 66;
+            this.label7.Text = "Fortschritt Gesamt:";
+            // 
             // FrmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(16F, 31F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1725, 1254);
+            this.ClientSize = new System.Drawing.Size(1542, 2351);
+            this.Controls.Add(this.label7);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.progressBar2);
             this.Controls.Add(this.lb_animestatus);
             this.Controls.Add(this.lb_animeprogress);
             this.Controls.Add(this.progressBar1);
@@ -401,7 +433,7 @@
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label1);
-            this.Margin = new System.Windows.Forms.Padding(8, 8, 8, 8);
+            this.Margin = new System.Windows.Forms.Padding(8);
             this.Name = "FrmMain";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
@@ -443,6 +475,9 @@
         private System.Windows.Forms.ProgressBar progressBar1;
         private System.Windows.Forms.Label lb_animeprogress;
         private System.Windows.Forms.Label lb_animestatus;
+        private System.Windows.Forms.ProgressBar progressBar2;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label7;
     }
 }
 

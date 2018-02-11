@@ -35,47 +35,16 @@ namespace Proxler2
         private void Form1_Load(object sender, EventArgs e)
         {
             Data.LoadFromFile();
+            Data.updateYoutubeDl();
+
             listView1.View = View.Details;
-            Task Updater = AsyncUpdate(Data);
 
         }
 
-        private async static Task AsyncUpdate(SettingController Settings)
-        {
 
-            var client = new GitHubClient(new ProductHeaderValue("what_the_fuck_do_i_have_to_write_here"));
-            var releases = await client.Repository.Release.GetAll("rg3", "youtube-dl");
-            var latest = releases[0];
-            if(latest.Id!=Settings.youtubeDLVersion)
-            {//start replace old file
-                foreach (var item in latest.Assets)
-                {
-                    if(item.Name== "youtube-dl.exe")
-                    {
-                        using (WebClient webClient = new WebClient())
-                        {
-                            try {
-                                Console.WriteLine(Settings.ytDlPath);
-                                Console.WriteLine(item.BrowserDownloadUrl);
-                                webClient.DownloadFile(item.BrowserDownloadUrl, Settings.ytDlPath);
-                                Settings.youtubeDLVersion = latest.Id;
-                                Settings.SaveToFile();
-
-                            }
-                            catch
-                            {
-                                MessageBox.Show("Automatic Update from Yt-dl failed");
-                            }
-                        }
-                    }
-                }
-            }
-            //add check if run on windows
-
-        }
         private void bn_Jdownloader_Click(object sender, EventArgs e)
         {
-            FrmJD myForm2 = new FrmJD(Data);
+            FrmSettings myForm2 = new FrmSettings(Data);
             myForm2.ShowDialog();
             Data.SaveToFile();
 

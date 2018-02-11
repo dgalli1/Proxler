@@ -67,11 +67,11 @@
     </Compile>
     <Compile Include="Hoster.cs" />
     <Compile Include="Jdownloader.cs" />
-    <Compile Include="FrmJD.cs">
+    <Compile Include="FrmSettings.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FrmJD.Designer.cs">
-      <DependentUpon>FrmJD.cs</DependentUpon>
+    <Compile Include="FrmSettings.Designer.cs">
+      <DependentUpon>FrmSettings.cs</DependentUpon>
     </Compile>
     <Compile Include="FrmMain.cs">
       <SubType>Form</SubType>
@@ -87,8 +87,8 @@
     <EmbeddedResource Include="FrmHoster.resx">
       <DependentUpon>FrmHoster.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrmJD.resx">
-      <DependentUpon>FrmJD.cs</DependentUpon>
+    <EmbeddedResource Include="FrmSettings.resx">
+      <DependentUpon>FrmSettings.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmMain.resx">
       <DependentUpon>FrmMain.cs</DependentUpon>

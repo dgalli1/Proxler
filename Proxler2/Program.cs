@@ -40,9 +40,7 @@ namespace Proxler2
                 }
                 //%1 represents the argument - this tells windows to open this program with an argument / parameter
             }
-            //check for updates on yt-dl
-          //  Console.WriteLine(GetReleases("rg3", "youtube-dl"));
-            //var latest = releases.Result[0];
+
 
             key.Close();
             System.Windows.Forms.Application.EnableVisualStyles();
