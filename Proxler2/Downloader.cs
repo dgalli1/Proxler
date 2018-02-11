@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -19,6 +20,8 @@ namespace Proxler2
         }
         ThrottledStream throttled;
         private FrmMain frmMain;
+        internal BackgroundWorker backgroundworker;
+        internal int episodeall;
 
         public Downloader(FrmMain frmMain)
         {
@@ -55,11 +58,11 @@ namespace Proxler2
                     {
                         fileStream.Write(buffer, 0, len);
                         progress += len;
-                        double result = ((double)progress/ContentLength)*100;
+                        double percentage = ((double)progress/ContentLength)*100;
                         setDownloadSpeed(frmMain.maxDownloadSpeedmbytes);
-                     
+                        backgroundworker.ReportProgress(episodeall, new System.Tuple<string, double, double>(Math.Round(ConvertBytesToMegabytes(progress)) + " von " + Math.Round(ConvertBytesToMegabytes(ContentLength))+"mb", percentage, ConvertBytesToMegabytes(0)));
                         //Console.WriteLine(progress + "/" + ContentLength);
-                        Console.WriteLine(result + "%");
+                        Console.WriteLine(percentage + "%");
                     }
               
                 }

@@ -57,12 +57,13 @@
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.lb_animeprogress = new System.Windows.Forms.Label();
             this.lb_animestatus = new System.Windows.Forms.Label();
-            this.progressBar2 = new System.Windows.Forms.ProgressBar();
+            this.progress_file = new System.Windows.Forms.ProgressBar();
             this.label2 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.tb_downloadSpeed = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
+            this.lb_fileprogress = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lb_AnimeName
@@ -330,7 +331,7 @@
             // 
             // progressBar1
             // 
-            this.progressBar1.Location = new System.Drawing.Point(54, 1310);
+            this.progressBar1.Location = new System.Drawing.Point(11, 1310);
             this.progressBar1.Margin = new System.Windows.Forms.Padding(8);
             this.progressBar1.Name = "progressBar1";
             this.progressBar1.Size = new System.Drawing.Size(1427, 54);
@@ -339,7 +340,7 @@
             // lb_animeprogress
             // 
             this.lb_animeprogress.AutoSize = true;
-            this.lb_animeprogress.Location = new System.Drawing.Point(835, 1201);
+            this.lb_animeprogress.Location = new System.Drawing.Point(689, 1386);
             this.lb_animeprogress.Margin = new System.Windows.Forms.Padding(8, 0, 8, 0);
             this.lb_animeprogress.Name = "lb_animeprogress";
             this.lb_animeprogress.Size = new System.Drawing.Size(0, 32);
@@ -347,24 +348,24 @@
             // 
             // lb_animestatus
             // 
-            this.lb_animestatus.Location = new System.Drawing.Point(360, 1201);
+            this.lb_animestatus.Location = new System.Drawing.Point(338, 1418);
             this.lb_animestatus.Margin = new System.Windows.Forms.Padding(8, 0, 8, 0);
             this.lb_animestatus.Name = "lb_animestatus";
             this.lb_animestatus.Size = new System.Drawing.Size(408, 54);
             this.lb_animestatus.TabIndex = 63;
             // 
-            // progressBar2
+            // progress_file
             // 
-            this.progressBar2.Location = new System.Drawing.Point(48, 1179);
-            this.progressBar2.Margin = new System.Windows.Forms.Padding(8);
-            this.progressBar2.Name = "progressBar2";
-            this.progressBar2.Size = new System.Drawing.Size(1427, 54);
-            this.progressBar2.TabIndex = 64;
+            this.progress_file.Location = new System.Drawing.Point(11, 1191);
+            this.progress_file.Margin = new System.Windows.Forms.Padding(8);
+            this.progress_file.Name = "progress_file";
+            this.progress_file.Size = new System.Drawing.Size(1427, 54);
+            this.progress_file.TabIndex = 64;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(48, 1136);
+            this.label2.Location = new System.Drawing.Point(13, 1124);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(223, 32);
             this.label2.TabIndex = 65;
@@ -373,7 +374,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(48, 1270);
+            this.label7.Location = new System.Drawing.Point(5, 1270);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(255, 32);
             this.label7.TabIndex = 66;
@@ -405,17 +406,27 @@
             this.label10.TabIndex = 69;
             this.label10.Text = "Mbytes/s";
             // 
+            // lb_fileprogress
+            // 
+            this.lb_fileprogress.AutoSize = true;
+            this.lb_fileprogress.Location = new System.Drawing.Point(673, 1124);
+            this.lb_fileprogress.Name = "lb_fileprogress";
+            this.lb_fileprogress.Size = new System.Drawing.Size(0, 32);
+            this.lb_fileprogress.TabIndex = 70;
+            this.lb_fileprogress.Click += new System.EventHandler(this.lb_fileprogress_Click);
+            // 
             // FrmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(16F, 31F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1525, 1593);
+            this.Controls.Add(this.lb_fileprogress);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.tb_downloadSpeed);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.progressBar2);
+            this.Controls.Add(this.progress_file);
             this.Controls.Add(this.lb_animestatus);
             this.Controls.Add(this.lb_animeprogress);
             this.Controls.Add(this.progressBar1);
@@ -480,12 +491,13 @@
         private System.Windows.Forms.ProgressBar progressBar1;
         private System.Windows.Forms.Label lb_animeprogress;
         private System.Windows.Forms.Label lb_animestatus;
-        private System.Windows.Forms.ProgressBar progressBar2;
+        private System.Windows.Forms.ProgressBar progress_file;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox tb_downloadSpeed;
         private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label lb_fileprogress;
     }
 }
 

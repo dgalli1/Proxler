@@ -370,12 +370,15 @@ namespace Proxler2
                                     {
                                         Console.WriteLine("try to download:" + response.filelink);
                                         Downloader downloader = new Downloader(this);
+                                        downloader.episodeall = episodeall;
+                                        downloader.backgroundworker = backgroundWorker1;
                                         var filetype=response.filelink.Substring(response.filelink.LastIndexOf('.')).Replace("\n", "");
                                         var path = Data.downloadpath + "\\" + CleanFileName(Anime.myName) + "\\" + Anime.mySub + "\\" + item.Episode + filetype;
                                         downloader.Get(response.filelink,path); //wont work on linux
+                                        episodeall++;//mark episode as complete
+                                        episode++;
                                     } 
-                                    episodeall++;
-                                    episode++;
+
                                     break;
                             }
                         }
@@ -384,7 +387,7 @@ namespace Proxler2
                 }
                 grabber.Links.Clear();//todo make this less stupid
 
-               
+                
                 backgroundWorker1.ReportProgress(episodeall);
 
             }
@@ -428,6 +431,12 @@ namespace Proxler2
 
         private void backgroundWorker1_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
+            if (e.UserState != null)
+            {
+                var args = (System.Tuple<string, double, double>)e.UserState;
+                progress_file.Value = (int)args.Item2;
+                lb_fileprogress.Text = args.Item1;
+            }
             progressBar1.Value = e.ProgressPercentage+animeProgress;
             lb_animeprogress.Text = e.ProgressPercentage + "/" + accutalAnimeEp;
         }
@@ -444,6 +453,11 @@ namespace Proxler2
                 maxDownloadSpeedmbytes = 0;
             }
             Console.WriteLine(maxDownloadSpeedmbytes);
+        }
+
+        private void lb_fileprogress_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
