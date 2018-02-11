@@ -23,7 +23,7 @@ namespace Proxler2
         public List<Hoster> Links;
         private BackgroundWorker backgroundWorker1;
 
-        private void FetchEpisodeAsync(string linkfirst, string id, int episode, string sub)
+        public void FetchEpisodeAsync(string linkfirst, string id, int episode, string sub)
         {
 
             bool streamfound = false;
@@ -88,19 +88,7 @@ namespace Proxler2
 
         private void StartWork()
         {
-            int episode = int.Parse(myFirstEpisode);
-            string linkfirst = "http://proxer.me/watch/";
-            int intlastepisode = int.Parse(myLastEpisode);
-            int episodeall = 0;
-            while (intlastepisode >= episode)
-            {
-                FetchEpisodeAsync(linkfirst, myId, episode, mySub);
-                Thread.Sleep(mydelay);
-                episodeall++;
-                episode++;
-               backgroundWorker1.ReportProgress(episodeall);
 
-            }
         }
     }
 }

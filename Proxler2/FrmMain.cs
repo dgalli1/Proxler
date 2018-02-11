@@ -315,31 +315,83 @@ namespace Proxler2
 
         private void backgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
         {
+            JDownloader jdownloader= new JDownloader();
+            JDownloader.JdDevice yourdevice =new JDownloader.JdDevice();
+
+            //setup downloader
+            switch (Data.Downloader)
+            {
+                case SettingController.DownloaderEnum.Jdownloader:
+                    try
+                    {
+                        jdownloader.Connect(Data.Email, Data.Password);
+                        jdownloader.EnumerateDevices();
+                         yourdevice = jdownloader.Devices.FirstOrDefault(x => x.Name == Data.DeviceName);
+                    }
+                    catch
+                    {
+                        MessageBox.Show("Konnte nicht zu deinem myJDownloader Account verbinden. Überprüfe deine Einstellungen");
+                        return;
+                    }
+                    break;
+                case SettingController.DownloaderEnum.youtubedl:
+                 //   var youtubedl = new youtubedl();
+                    break;
+            }
             int episodeall = 0;
             AniQue Anime = e.Argument as AniQue;
             LinkGrabber grabber = null;
-                grabber = new LinkGrabber(Anime.myID, Anime.myFirstEpisode, Anime.myLastEpisode, Anime.mySub, Anime.myDelay, backgroundWorker1, client);
-                int episode = Int32.Parse(Anime.myFirstEpisode); //todo;
-                var jdownloader = new JDownloader();
-                jdownloader.Connect(Data.Email, Data.Password);
-                jdownloader.EnumerateDevices();
-                var yourdevice = jdownloader.Devices.FirstOrDefault(x => x.Name == Data.DeviceName);
+            grabber = new LinkGrabber(Anime.myID, Anime.myFirstEpisode, Anime.myLastEpisode, Anime.mySub, Anime.myDelay, backgroundWorker1, client);
+            int episode = int.Parse(Anime.myFirstEpisode);
+            string linkfirst = "http://proxer.me/watch/";
+            int intlastepisode = int.Parse(Anime.myLastEpisode);
+            while (intlastepisode >= episode)
+            {
+                grabber.FetchEpisodeAsync(linkfirst, Anime.myID, episode, Anime.mySub);
                 foreach (string Hoster in Data.HosterPriority)
                 {
                     foreach (Hoster item in grabber.Links)
                     {
                         if (item.Episode == episode && item.isHoster(Hoster))
                         {
-                            jdownloader.AddLink(yourdevice, item.Link, Anime.myName + " Ep. " + item.Episode);
-                            episode++;
-                            episodeall++;
+                            //add to download Manager
+                            Console.WriteLine(item.Link);
+                            switch (Data.Downloader)
+                            {
+                                case SettingController.DownloaderEnum.Jdownloader:
+                                    System.Threading.Thread.Sleep(Anime.myDelay); //add delay because Downloads are threaded
+                                    jdownloader.AddLink(yourdevice, item.Link, Anime.myName + " Ep. " + item.Episode);
+                                    //todo online check eventuel?
+                                    episodeall++;
+                                    episode++;
+                                    break;
+                                case SettingController.DownloaderEnum.youtubedl:
+
+                                    break;
+                            }
                         }
 
                     }
                 }
-                jdownloader.Disconnect();
+                grabber.Links.Clear();//todo make this less stupid
+
+                
+                backgroundWorker1.ReportProgress(episodeall);
+
+            }
+            switch (Data.Downloader)
+            {
+                case SettingController.DownloaderEnum.Jdownloader:
+                    jdownloader.Disconnect();
+                    break;
+                case SettingController.DownloaderEnum.youtubedl:
+
+                    break;
+            }
             e.Result=Anime;
         }
+
+        
 
         private void backgroundWorker1_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
@@ -365,7 +417,6 @@ namespace Proxler2
         {
             progressBar1.Value = e.ProgressPercentage+animeProgress;
             lb_animeprogress.Text = e.ProgressPercentage + "/" + accutalAnimeEp;
-            Console.Write("dfs");
         }
     }
 }
