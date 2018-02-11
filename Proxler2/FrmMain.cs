@@ -317,7 +317,7 @@ namespace Proxler2
         {
             JDownloader jdownloader= new JDownloader();
             JDownloader.JdDevice yourdevice =new JDownloader.JdDevice();
-
+            YoutubeDl youtubeDl = null;
             //setup downloader
             switch (Data.Downloader)
             {
@@ -335,7 +335,8 @@ namespace Proxler2
                     }
                     break;
                 case SettingController.DownloaderEnum.youtubedl:
-                 //   var youtubedl = new youtubedl();
+                    youtubeDl  = new YoutubeDl();
+                    youtubeDl.pathtoexcecutable = Data.ytDlPath;
                     break;
             }
             int episodeall = 0;
@@ -362,11 +363,24 @@ namespace Proxler2
                                     System.Threading.Thread.Sleep(Anime.myDelay); //add delay because Downloads are threaded
                                     jdownloader.AddLink(yourdevice, item.Link, Anime.myName + " Ep. " + item.Episode);
                                     //todo online check eventuel?
+
+                                    //go to next episode if everything worked out
                                     episodeall++;
                                     episode++;
                                     break;
                                 case SettingController.DownloaderEnum.youtubedl:
-
+                                    youtubeDLResponse response=youtubeDl.getLink(item.Link);
+                                    if(response.error.Count>0&&response.filelink.Length >0)
+                                    {
+                                        Console.WriteLine(item.Link + "failed with" + response.error[0]);
+                                        break;
+                                    } else
+                                    {
+                                        Console.WriteLine("try to download:" + response.filelink);
+                                        Downloader.Get(response.filelink);
+                                    } 
+                                    episodeall++;
+                                    episode++;
                                     break;
                             }
                         }
@@ -375,7 +389,7 @@ namespace Proxler2
                 }
                 grabber.Links.Clear();//todo make this less stupid
 
-                
+               
                 backgroundWorker1.ReportProgress(episodeall);
 
             }
