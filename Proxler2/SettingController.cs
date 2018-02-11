@@ -1,9 +1,12 @@
-﻿using System;
+﻿using Octokit;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Proxler2
 {
@@ -27,6 +30,11 @@ namespace Proxler2
             get { return myDeviceName; }
             set { myDeviceName = value; }
         }
+        public enum DownloaderEnum
+        {
+            Jdownloader,
+            youtubedl
+        }
         private List<String> myHosterPriority;
         public List<String> HosterPriority
         {
@@ -37,7 +45,20 @@ namespace Proxler2
         {
             get { return myytDlPath; }
         }
+
+
+
         public int youtubeDLVersion { get; internal set; }
+
+        private DownloaderEnum myDownloader;
+        public DownloaderEnum Downloader
+        {
+            get { return myDownloader; }
+            set { myDownloader = value; }
+        }
+
+        public string downloadpath { get; internal set; }
+
         private string myytDlPath;
         private string FilePath;
         private string HosterPath;
@@ -50,6 +71,51 @@ namespace Proxler2
             myEmail = Email;
             myPassword = Password;
             myDeviceName = DeviceName;
+            
+        }
+        public void updateYoutubeDl()
+        {
+            Task Updater = AsyncUpdate(this);
+        }
+        public void updateYoutubeDlforce()
+        {
+            this.youtubeDLVersion = 0;
+            updateYoutubeDl();
+        }
+        
+
+        private async static Task AsyncUpdate(SettingController Settings)
+        {
+
+            var client = new GitHubClient(new ProductHeaderValue("what_the_fuck_do_i_have_to_write_here"));
+            var releases = await client.Repository.Release.GetAll("rg3", "youtube-dl");
+            var latest = releases[0];
+            if (latest.Id != Settings.youtubeDLVersion)
+            {//start replace old file
+                foreach (var item in latest.Assets)
+                {
+                    if (item.Name == "youtube-dl.exe")
+                    {
+                        using (WebClient webClient = new WebClient())
+                        {
+                            try
+                            {
+                                Console.WriteLine(Settings.ytDlPath);
+                                Console.WriteLine(item.BrowserDownloadUrl);
+                                webClient.DownloadFile(item.BrowserDownloadUrl, Settings.ytDlPath);
+                                Settings.youtubeDLVersion = latest.Id;
+                                Settings.SaveToFile();
+                                MessageBox.Show("youtube-dl was updated successfully");
+                            }
+                            catch
+                            {
+                                MessageBox.Show("Automatic Update from Yt-dl failed");
+                            }
+                        }
+                    }
+                }
+            }
+            //add check if run on windows
 
         }
 
@@ -76,9 +142,12 @@ namespace Proxler2
                 myPassword = credits[1];
                 myDeviceName = credits[2];
                 youtubeDLVersion =Int32.Parse(credits[3]);
+                myDownloader = (DownloaderEnum)Int32.Parse(credits[4]);
+                downloadpath = credits[5];
             } else
                 {
                     youtubeDLVersion = 0;
+                    myDownloader = DownloaderEnum.youtubedl;
                 }
             string[] hosters;
             if (File.Exists(HosterPath))
@@ -104,7 +173,7 @@ namespace Proxler2
 
         public void SaveToFile()
         {
-            File.WriteAllText(FilePath, myEmail + ";" + myPassword + ";" + myDeviceName + ";" + this.youtubeDLVersion);
+            File.WriteAllText(FilePath, myEmail + ";" + myPassword + ";" + myDeviceName + ";" + this.youtubeDLVersion + ";" +(int)this.myDownloader + ";" + this.downloadpath);
         }
     }
 }
