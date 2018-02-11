@@ -73,14 +73,13 @@ namespace Proxler2
                 FetchEpisodeAsync(linkfirst, id, episode, sub);
             }
         }
-        public LinkGrabber(string id, string firstepisode,string lastepisode, string sub,int delay, BackgroundWorker backgroundWorker1, HttpClient client)
+        public LinkGrabber(string id, string firstepisode,string lastepisode, string sub, BackgroundWorker backgroundWorker1, HttpClient client)
         {
             globClient = client;
             myId = id;
             myFirstEpisode =firstepisode;
             myLastEpisode = lastepisode;
             mySub =sub;
-            mydelay = delay;
             Links = new List<Hoster>();
             this.backgroundWorker1 = backgroundWorker1;
             this.StartWork();

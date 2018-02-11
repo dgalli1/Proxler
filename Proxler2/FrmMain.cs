@@ -11,6 +11,7 @@ using System.Windows.Forms;
 using CloudFlareUtilities;
 using System.Net.Http;
 using Octokit;
+using System.IO;
 
 namespace Proxler2
 {
@@ -21,6 +22,7 @@ namespace Proxler2
         private int animeProgress = 0;
         private HttpClient client;//set global client i don't think this is how you do this but it saves me from solving cloudflare multiple times
         private int accutalAnimeEp = 0;
+        public double maxDownloadSpeedmbytes = 0;
         Queue<AniQue> Que;
         public FrmMain(string id)
         {
@@ -75,7 +77,7 @@ namespace Proxler2
                 {
                     Lang = "gerdub";
                 }
-                AniQue temp = new AniQue(listviewitem.SubItems[0].Text, (String)listviewitem.Tag, listviewitem.SubItems[1].Text, listviewitem.SubItems[2].Text, Lang, Int32.Parse(tb_delay.Text));
+                AniQue temp = new AniQue(listviewitem.SubItems[0].Text, (String)listviewitem.Tag, listviewitem.SubItems[1].Text, listviewitem.SubItems[2].Text, Lang);
                 alleFolgen += temp.EpisodeCount();
                 Que.Enqueue(temp);
           
@@ -279,17 +281,7 @@ namespace Proxler2
 
         }
 
-        private void tb_delay_Validating(object sender, CancelEventArgs e)
-        {
-            try
-            {
-                Int32.Parse(tb_delay.Text);
-            }
-            catch
-            {
-                tb_delay.Text = "0";
-            }
-        }
+
 
         private void bn_add_Click(object sender, EventArgs e)
         {
@@ -342,7 +334,7 @@ namespace Proxler2
             int episodeall = 0;
             AniQue Anime = e.Argument as AniQue;
             LinkGrabber grabber = null;
-            grabber = new LinkGrabber(Anime.myID, Anime.myFirstEpisode, Anime.myLastEpisode, Anime.mySub, Anime.myDelay, backgroundWorker1, client);
+            grabber = new LinkGrabber(Anime.myID, Anime.myFirstEpisode, Anime.myLastEpisode, Anime.mySub, backgroundWorker1, client);
             int episode = int.Parse(Anime.myFirstEpisode);
             string linkfirst = "http://proxer.me/watch/";
             int intlastepisode = int.Parse(Anime.myLastEpisode);
@@ -360,7 +352,7 @@ namespace Proxler2
                             switch (Data.Downloader)
                             {
                                 case SettingController.DownloaderEnum.Jdownloader:
-                                    System.Threading.Thread.Sleep(Anime.myDelay); //add delay because Downloads are threaded
+                                    System.Threading.Thread.Sleep(Data.delay); //add delay because Downloads are threaded
                                     jdownloader.AddLink(yourdevice, item.Link, Anime.myName + " Ep. " + item.Episode);
                                     //todo online check eventuel?
 
@@ -377,7 +369,10 @@ namespace Proxler2
                                     } else
                                     {
                                         Console.WriteLine("try to download:" + response.filelink);
-                                        Downloader.Get(response.filelink);
+                                        Downloader downloader = new Downloader(this);
+                                        var filetype=response.filelink.Substring(response.filelink.LastIndexOf('.')).Replace("\n", "");
+                                        var path = Data.downloadpath + "\\" + CleanFileName(Anime.myName) + "\\" + Anime.mySub + "\\" + item.Episode + filetype;
+                                        downloader.Get(response.filelink,path); //wont work on linux
                                     } 
                                     episodeall++;
                                     episode++;
@@ -405,7 +400,11 @@ namespace Proxler2
             e.Result=Anime;
         }
 
-        
+
+        public static string CleanFileName(string fileName)
+        {
+            return Path.GetInvalidFileNameChars().Aggregate(fileName, (current, c) => current.Replace(c.ToString(), string.Empty));
+        }
 
         private void backgroundWorker1_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
@@ -431,6 +430,20 @@ namespace Proxler2
         {
             progressBar1.Value = e.ProgressPercentage+animeProgress;
             lb_animeprogress.Text = e.ProgressPercentage + "/" + accutalAnimeEp;
+        }
+
+        private void tb_downloadSpeed_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                var temp = double.Parse(tb_downloadSpeed.Text);
+                maxDownloadSpeedmbytes = temp;
+            }
+            catch
+            {
+                maxDownloadSpeedmbytes = 0;
+            }
+            Console.WriteLine(maxDownloadSpeedmbytes);
         }
     }
 }

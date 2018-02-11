@@ -18,6 +18,11 @@ namespace Proxler2
             get { return myEmail; }
             set { myEmail = value; }
         }
+        public int delay
+        {
+            get { return myDelay; }
+            set { myDelay = value; }
+        }
         private string myPassword;
         public string Password
         {
@@ -62,6 +67,8 @@ namespace Proxler2
         private string myytDlPath;
         private string FilePath;
         private string HosterPath;
+        private int myDelay;
+
         public SettingController()
         {
 
@@ -144,6 +151,7 @@ namespace Proxler2
                 youtubeDLVersion =Int32.Parse(credits[3]);
                 myDownloader = (DownloaderEnum)Int32.Parse(credits[4]);
                 downloadpath = credits[5];
+                    myDelay = Int32.Parse(credits[6]);
             } else
                 {
                     youtubeDLVersion = 0;
@@ -173,7 +181,7 @@ namespace Proxler2
 
         public void SaveToFile()
         {
-            File.WriteAllText(FilePath, myEmail + ";" + myPassword + ";" + myDeviceName + ";" + this.youtubeDLVersion + ";" +(int)this.myDownloader + ";" + this.downloadpath);
+            File.WriteAllText(FilePath, myEmail + ";" + myPassword + ";" + myDeviceName + ";" + this.youtubeDLVersion + ";" +(int)this.myDownloader + ";" + this.downloadpath + ";"+this.myDelay);
         }
     }
 }

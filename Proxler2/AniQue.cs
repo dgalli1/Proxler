@@ -13,16 +13,14 @@ namespace Proxler2
         public string myFirstEpisode { get; private set; }
         public string myName { get; private set; }
         public string mySub { get; private set; }
-        public int myDelay { get; private set; }
 
-        public AniQue(String Name, String ID, string firstepisode, string lastepisode, string sub, int delay)
+        public AniQue(String Name, String ID, string firstepisode, string lastepisode, string sub)
         {
             this.myName = Name;
             this.myID = ID;
             this.myFirstEpisode = firstepisode;
             this.myLastEpisode = lastepisode;
             this.mySub = sub;
-            this.myDelay = delay;
         }
         public int EpisodeCount()
         {

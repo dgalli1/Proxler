@@ -22,6 +22,7 @@ namespace Proxler2
             tb_Email.Text = Data.Email;
             tb_Passwort.Text = Data.Password;
             tb_downloadpath.Text=Data.downloadpath;
+            tb_delay.Text = Data.delay + "";
             switch(Data.Downloader)
             {
                 case SettingController.DownloaderEnum.Jdownloader:
@@ -46,6 +47,7 @@ namespace Proxler2
             Data.DeviceName = tb_DeviceName.Text;
             Data.Password = tb_Passwort.Text;
             Data.downloadpath = tb_downloadpath.Text;
+            Data.delay =Int32.Parse( tb_delay.Text);
             switch (Data.Downloader)
             {
                 case SettingController.DownloaderEnum.Jdownloader:
@@ -109,6 +111,23 @@ namespace Proxler2
         private void bn_updateytdl_Click(object sender, EventArgs e)
         {
             Data.updateYoutubeDlforce();
+        }
+
+        private void tb_delay_Validating(object sender, CancelEventArgs e)
+        {
+            try
+            {
+                Int32.Parse(tb_delay.Text);
+            }
+            catch
+            {
+                tb_delay.Text = "0";
+            }
+        }
+
+        private void tb_delay_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

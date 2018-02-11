@@ -45,6 +45,8 @@
             this.label5 = new System.Windows.Forms.Label();
             this.tb_downloadpath = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
+            this.tb_delay = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
             this.gb_jdownloader.SuspendLayout();
             this.gb_youtubedl.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -116,7 +118,7 @@
             // 
             // bn_Speichern
             // 
-            this.bn_Speichern.Location = new System.Drawing.Point(38, 1171);
+            this.bn_Speichern.Location = new System.Drawing.Point(60, 1361);
             this.bn_Speichern.Margin = new System.Windows.Forms.Padding(8, 7, 8, 7);
             this.bn_Speichern.Name = "bn_Speichern";
             this.bn_Speichern.Size = new System.Drawing.Size(1190, 67);
@@ -127,6 +129,8 @@
             // 
             // gb_jdownloader
             // 
+            this.gb_jdownloader.Controls.Add(this.tb_delay);
+            this.gb_jdownloader.Controls.Add(this.label6);
             this.gb_jdownloader.Controls.Add(this.label1);
             this.gb_jdownloader.Controls.Add(this.label2);
             this.gb_jdownloader.Controls.Add(this.label3);
@@ -136,7 +140,7 @@
             this.gb_jdownloader.Controls.Add(this.tb_Passwort);
             this.gb_jdownloader.Location = new System.Drawing.Point(38, 306);
             this.gb_jdownloader.Name = "gb_jdownloader";
-            this.gb_jdownloader.Size = new System.Drawing.Size(1321, 345);
+            this.gb_jdownloader.Size = new System.Drawing.Size(1321, 402);
             this.gb_jdownloader.TabIndex = 9;
             this.gb_jdownloader.TabStop = false;
             this.gb_jdownloader.Text = "myJDownloader";
@@ -147,7 +151,7 @@
             this.gb_youtubedl.Controls.Add(this.tb_downloadpath);
             this.gb_youtubedl.Controls.Add(this.label5);
             this.gb_youtubedl.Controls.Add(this.bn_updateytdl);
-            this.gb_youtubedl.Location = new System.Drawing.Point(43, 708);
+            this.gb_youtubedl.Location = new System.Drawing.Point(38, 921);
             this.gb_youtubedl.Name = "gb_youtubedl";
             this.gb_youtubedl.Size = new System.Drawing.Size(1300, 417);
             this.gb_youtubedl.TabIndex = 13;
@@ -227,6 +231,28 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click_1);
             // 
+            // tb_delay
+            // 
+            this.tb_delay.Location = new System.Drawing.Point(661, 320);
+            this.tb_delay.Margin = new System.Windows.Forms.Padding(8);
+            this.tb_delay.Name = "tb_delay";
+            this.tb_delay.Size = new System.Drawing.Size(524, 38);
+            this.tb_delay.TabIndex = 58;
+            this.tb_delay.Text = "10000";
+            this.tb_delay.TextChanged += new System.EventHandler(this.tb_delay_TextChanged);
+            this.tb_delay.Validating += new System.ComponentModel.CancelEventHandler(this.tb_delay_Validating);
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(14, 337);
+            this.label6.Margin = new System.Windows.Forms.Padding(8, 0, 8, 0);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(205, 44);
+            this.label6.TabIndex = 57;
+            this.label6.Text = "Delay (ms)";
+            // 
             // FrmSettings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(16F, 31F);
@@ -269,5 +295,7 @@
         private System.Windows.Forms.TextBox tb_downloadpath;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button bn_updateytdl;
+        private System.Windows.Forms.TextBox tb_delay;
+        private System.Windows.Forms.Label label6;
     }
 }

@@ -10,9 +10,22 @@ using System.Windows.Forms;
 
 namespace Proxler2
 {
-    static class Downloader
+     class Downloader
     {
-        public static void Get(string uri)
+        int downloadspeed = Int32.MaxValue; //unlimited
+        public double downloadspeedmb
+        {
+            get { return ConvertBytesToMegabytes(downloadspeed); }
+        }
+        ThrottledStream throttled;
+        private FrmMain frmMain;
+
+        public Downloader(FrmMain frmMain)
+        {
+            this.frmMain = frmMain;
+        }
+
+        public void Get(string uri,string savepath)
         {
 
             try
@@ -25,10 +38,15 @@ namespace Proxler2
                     Console.WriteLine("yey" + ContentLength);
                 }
                 //  StreamReader sr = new StreamReader(resp.GetResponseStream());
-                ThrottledStream throttled = new ThrottledStream(resp.GetResponseStream(), 524288);
+                throttled = new ThrottledStream(resp.GetResponseStream(), downloadspeed);
+                FileInfo fileInfo = new FileInfo(savepath);
 
-                int _bufferSize = 524288;
-                using (var fileStream = File.Create(@"D:\Users\admin\Documents\Sourcetree\Proxler_TEST\Proxler2\bin\Release\video.mp4"))
+                if (!fileInfo.Exists)
+                {
+                    Directory.CreateDirectory(fileInfo.Directory.FullName);
+                }
+                int _bufferSize = 4096;
+                using (var fileStream = File.Create(savepath))
                 {
                     var buffer = new byte[_bufferSize];
                     int len;
@@ -38,10 +56,15 @@ namespace Proxler2
                         fileStream.Write(buffer, 0, len);
                         progress += len;
                         double result = ((double)progress/ContentLength)*100;
-                        Console.WriteLine(progress + "/" + ContentLength);
+                        setDownloadSpeed(frmMain.maxDownloadSpeedmbytes);
+                     
+                        //Console.WriteLine(progress + "/" + ContentLength);
                         Console.WriteLine(result + "%");
                     }
+              
                 }
+                throttled.Close();
+                throttled.Dispose();
             } catch(Exception Ex)
             {
                 MessageBox.Show(Ex.Message);             
@@ -49,5 +72,23 @@ namespace Proxler2
 
         }
 
-    }           
+        public  void setDownloadSpeed(double mbytes)
+        {
+            this.downloadspeed = (int)ConvertMegabytsToBytes(mbytes);
+            if(downloadspeed==0)
+            {
+                downloadspeed = Int32.MaxValue;
+            }
+            throttled.MaxBytesPerSecond = downloadspeed;
+        }
+        private double ConvertBytesToMegabytes(long bytes)
+        {
+            return (bytes / 1024f) / 1024f;
+        }
+        private double ConvertMegabytsToBytes(double bytes)
+        {
+            return (bytes * 1024f) * 1024f;
+        }
+
+    }
 }

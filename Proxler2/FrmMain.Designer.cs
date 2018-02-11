@@ -46,8 +46,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.bn_Jdownloader = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
-            this.label3 = new System.Windows.Forms.Label();
-            this.tb_delay = new System.Windows.Forms.TextBox();
             this.bn_add = new System.Windows.Forms.Button();
             this.bn_remove = new System.Windows.Forms.Button();
             this.listView1 = new System.Windows.Forms.ListView();
@@ -62,6 +60,9 @@
             this.progressBar2 = new System.Windows.Forms.ProgressBar();
             this.label2 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.tb_downloadSpeed = new System.Windows.Forms.TextBox();
+            this.label10 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lb_AnimeName
@@ -262,27 +263,6 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(792, 1015);
-            this.label3.Margin = new System.Windows.Forms.Padding(8, 0, 8, 0);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(205, 44);
-            this.label3.TabIndex = 55;
-            this.label3.Text = "Delay (ms)";
-            // 
-            // tb_delay
-            // 
-            this.tb_delay.Location = new System.Drawing.Point(1048, 1015);
-            this.tb_delay.Margin = new System.Windows.Forms.Padding(8);
-            this.tb_delay.Name = "tb_delay";
-            this.tb_delay.Size = new System.Drawing.Size(343, 38);
-            this.tb_delay.TabIndex = 56;
-            this.tb_delay.Text = "10000";
-            this.tb_delay.Validating += new System.ComponentModel.CancelEventHandler(this.tb_delay_Validating);
-            // 
             // bn_add
             // 
             this.bn_add.Location = new System.Drawing.Point(1227, 637);
@@ -399,11 +379,40 @@
             this.label7.TabIndex = 66;
             this.label7.Text = "Fortschritt Gesamt:";
             // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(788, 983);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(421, 32);
+            this.label3.TabIndex = 67;
+            this.label3.Text = "Max. Downloadgeschwindigkeit:";
+            // 
+            // tb_downloadSpeed
+            // 
+            this.tb_downloadSpeed.Location = new System.Drawing.Point(794, 1042);
+            this.tb_downloadSpeed.Name = "tb_downloadSpeed";
+            this.tb_downloadSpeed.Size = new System.Drawing.Size(418, 38);
+            this.tb_downloadSpeed.TabIndex = 68;
+            this.tb_downloadSpeed.TextChanged += new System.EventHandler(this.tb_downloadSpeed_TextChanged);
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(1236, 1047);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(128, 32);
+            this.label10.TabIndex = 69;
+            this.label10.Text = "Mbytes/s";
+            // 
             // FrmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(16F, 31F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1525, 1438);
+            this.ClientSize = new System.Drawing.Size(1525, 1593);
+            this.Controls.Add(this.label10);
+            this.Controls.Add(this.tb_downloadSpeed);
+            this.Controls.Add(this.label3);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.progressBar2);
@@ -413,8 +422,6 @@
             this.Controls.Add(this.listView1);
             this.Controls.Add(this.bn_remove);
             this.Controls.Add(this.bn_add);
-            this.Controls.Add(this.tb_delay);
-            this.Controls.Add(this.label3);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.bn_Jdownloader);
             this.Controls.Add(this.lb_AnimeName);
@@ -462,8 +469,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button bn_Jdownloader;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox tb_delay;
         private System.Windows.Forms.Button bn_add;
         private System.Windows.Forms.Button bn_remove;
         private System.Windows.Forms.ListView listView1;
@@ -478,6 +483,9 @@
         private System.Windows.Forms.ProgressBar progressBar2;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TextBox tb_downloadSpeed;
+        private System.Windows.Forms.Label label10;
     }
 }
 
