@@ -14,6 +14,7 @@ namespace Proxler2
         #region Properties
 
         private int maxBytesPerSecond;
+        public int BytesPerSecond;
         /// <summary>
         /// Number of Bytes that are allowed per second
         /// </summary>
@@ -72,6 +73,7 @@ namespace Proxler2
 
         private void resettimer_Elapsed(object sender, ElapsedEventArgs e)
         {
+            BytesPerSecond = processed;
             processed = 0;
             wh.Set();
         }

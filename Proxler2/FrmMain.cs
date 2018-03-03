@@ -338,13 +338,19 @@ namespace Proxler2
             int episode = int.Parse(Anime.myFirstEpisode);
             string linkfirst = "http://proxer.me/watch/";
             int intlastepisode = int.Parse(Anime.myLastEpisode);
+            string error_log = "";
             while (intlastepisode >= episode)
             {
                 grabber.FetchEpisodeAsync(linkfirst, Anime.myID, episode, Anime.mySub);
+                Boolean episode_found = false;
                 foreach (string Hoster in Data.HosterPriority)
                 {
                     foreach (Hoster item in grabber.Links)
                     {
+                        if(episode_found)
+                        {
+                            continue;
+                        }
                         if (item.Episode == episode && item.isHoster(Hoster))
                         {
                             //add to download Manager
@@ -362,13 +368,14 @@ namespace Proxler2
                                     break;
                                 case SettingController.DownloaderEnum.youtubedl:
                                     youtubeDLResponse response=youtubeDl.getLink(item.Link);
-                                    if(response.error.Count>0&&response.filelink.Length >0)
+                                    if(response.error.Count>0)
                                     {
                                         Console.WriteLine(item.Link + "failed with" + response.error[0]);
                                         break;
                                     } else
                                     {
                                         Console.WriteLine("try to download:" + response.filelink);
+                                        episode_found = true;
                                         Downloader downloader = new Downloader(this);
                                         downloader.episodeall = episodeall;
                                         downloader.backgroundworker = backgroundWorker1;
@@ -384,10 +391,21 @@ namespace Proxler2
                         }
 
                     }
+
+                }
+
+                //check if the episode wa found
+                if (!episode_found)
+                {
+                    //todo add to logs
+                    error_log += "Couldnt add Episode" + episode + " because the hoster was unsupported or offline\n";
+                    //episode not found add to logs and go to next episode
+                    episodeall++;//mark episode as complete
+                    episode++;
+ 
                 }
                 grabber.Links.Clear();//todo make this less stupid
 
-                
                 backgroundWorker1.ReportProgress(episodeall);
 
             }
@@ -400,6 +418,7 @@ namespace Proxler2
 
                     break;
             }
+            MessageBox.Show(error_log);
             e.Result=Anime;
         }
 

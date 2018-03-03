@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -54,17 +55,43 @@ namespace Proxler2
                     var buffer = new byte[_bufferSize];
                     int len;
                     long progress = 0;
+                    Queue<int> lastseconds = new Queue<int>();
+                    int lastbytes = 0;
                     while ((len = throttled.Read(buffer, 0, buffer.Length)) > 0)
                     {
                         fileStream.Write(buffer, 0, len);
                         progress += len;
                         double percentage = ((double)progress/ContentLength)*100;
                         setDownloadSpeed(frmMain.maxDownloadSpeedmbytes);
+                        int kbytes = throttled.BytesPerSecond / 1024;
+                        int mbytes = throttled.BytesPerSecond / 1024;
+                        //Console.WriteLine(kbytes + "kybtes/s");
+                        if(lastbytes!=throttled.BytesPerSecond)
+                        {
+                            lastseconds.Enqueue(kbytes);
+                            lastbytes = throttled.BytesPerSecond;
+                            Console.WriteLine("Enqued");
+                        }
+                        int lastsecs = 0;
+                        foreach (int item in lastseconds)
+                        {
+                            lastsecs += item;
+                        }
+                        if(lastsecs!=0)
+                        {
+                            lastsecs = lastsecs / lastseconds.Count;
+                        }
+                        if(lastseconds.Count>10)
+                        {
+                            Console.WriteLine(lastsecs + "kybtes last 10s");
+
+                            lastseconds.Dequeue();
+                        }
+                        //Console.WriteLine(ConvertBytesToMegabytes(throttled.BytesPerSecond));
                         backgroundworker.ReportProgress(episodeall, new System.Tuple<string, double, double>(Math.Round(ConvertBytesToMegabytes(progress)) + " von " + Math.Round(ConvertBytesToMegabytes(ContentLength))+"mb", percentage, ConvertBytesToMegabytes(0)));
-                        //Console.WriteLine(progress + "/" + ContentLength);
-                        Console.WriteLine(percentage + "%");
+         
                     }
-              
+
                 }
                 throttled.Close();
                 throttled.Dispose();

@@ -205,7 +205,7 @@
             this.bn_Download.Name = "bn_Download";
             this.bn_Download.Size = new System.Drawing.Size(605, 76);
             this.bn_Download.TabIndex = 32;
-            this.bn_Download.Text = "Zu JDownloader hinzufügen";
+            this.bn_Download.Text = "Download hinzufügen";
             this.bn_Download.UseVisualStyleBackColor = true;
             this.bn_Download.Click += new System.EventHandler(this.bn_Download_Click);
             // 
@@ -348,7 +348,7 @@
             // 
             // lb_animestatus
             // 
-            this.lb_animestatus.Location = new System.Drawing.Point(338, 1418);
+            this.lb_animestatus.Location = new System.Drawing.Point(414, 1461);
             this.lb_animestatus.Margin = new System.Windows.Forms.Padding(8, 0, 8, 0);
             this.lb_animestatus.Name = "lb_animestatus";
             this.lb_animestatus.Size = new System.Drawing.Size(408, 54);

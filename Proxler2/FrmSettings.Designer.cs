@@ -37,16 +37,16 @@
             this.tb_DeviceName = new System.Windows.Forms.TextBox();
             this.bn_Speichern = new System.Windows.Forms.Button();
             this.gb_jdownloader = new System.Windows.Forms.GroupBox();
+            this.tb_delay = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
             this.gb_youtubedl = new System.Windows.Forms.GroupBox();
+            this.button1 = new System.Windows.Forms.Button();
+            this.tb_downloadpath = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.bn_updateytdl = new System.Windows.Forms.Button();
             this.radioButton1 = new System.Windows.Forms.RadioButton();
             this.radioButton2 = new System.Windows.Forms.RadioButton();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.bn_updateytdl = new System.Windows.Forms.Button();
-            this.label5 = new System.Windows.Forms.Label();
-            this.tb_downloadpath = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.tb_delay = new System.Windows.Forms.TextBox();
-            this.label6 = new System.Windows.Forms.Label();
             this.gb_jdownloader.SuspendLayout();
             this.gb_youtubedl.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -145,6 +145,28 @@
             this.gb_jdownloader.TabStop = false;
             this.gb_jdownloader.Text = "myJDownloader";
             // 
+            // tb_delay
+            // 
+            this.tb_delay.Location = new System.Drawing.Point(661, 320);
+            this.tb_delay.Margin = new System.Windows.Forms.Padding(8);
+            this.tb_delay.Name = "tb_delay";
+            this.tb_delay.Size = new System.Drawing.Size(524, 38);
+            this.tb_delay.TabIndex = 58;
+            this.tb_delay.Text = "10000";
+            this.tb_delay.TextChanged += new System.EventHandler(this.tb_delay_TextChanged);
+            this.tb_delay.Validating += new System.ComponentModel.CancelEventHandler(this.tb_delay_Validating);
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(14, 337);
+            this.label6.Margin = new System.Windows.Forms.Padding(8, 0, 8, 0);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(205, 44);
+            this.label6.TabIndex = 57;
+            this.label6.Text = "Delay (ms)";
+            // 
             // gb_youtubedl
             // 
             this.gb_youtubedl.Controls.Add(this.button1);
@@ -157,6 +179,44 @@
             this.gb_youtubedl.TabIndex = 13;
             this.gb_youtubedl.TabStop = false;
             this.gb_youtubedl.Text = "youtube-dl";
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(320, 68);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(277, 68);
+            this.button1.TabIndex = 9;
+            this.button1.Text = "Auwählen";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click_1);
+            // 
+            // tb_downloadpath
+            // 
+            this.tb_downloadpath.Location = new System.Drawing.Point(656, 84);
+            this.tb_downloadpath.Name = "tb_downloadpath";
+            this.tb_downloadpath.Size = new System.Drawing.Size(524, 38);
+            this.tb_downloadpath.TabIndex = 8;
+            this.tb_downloadpath.TextChanged += new System.EventHandler(this.tb_downloadpath_TextChanged);
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(11, 84);
+            this.label5.Margin = new System.Windows.Forms.Padding(8, 0, 8, 0);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(208, 32);
+            this.label5.TabIndex = 7;
+            this.label5.Text = "Download Pfad";
+            // 
+            // bn_updateytdl
+            // 
+            this.bn_updateytdl.Location = new System.Drawing.Point(14, 323);
+            this.bn_updateytdl.Name = "bn_updateytdl";
+            this.bn_updateytdl.Size = new System.Drawing.Size(1171, 73);
+            this.bn_updateytdl.TabIndex = 0;
+            this.bn_updateytdl.Text = "Erzwinge Update von youtube-dl";
+            this.bn_updateytdl.UseVisualStyleBackColor = true;
+            this.bn_updateytdl.Click += new System.EventHandler(this.bn_updateytdl_Click);
             // 
             // radioButton1
             // 
@@ -193,71 +253,11 @@
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Downloader";
             // 
-            // bn_updateytdl
-            // 
-            this.bn_updateytdl.Location = new System.Drawing.Point(14, 323);
-            this.bn_updateytdl.Name = "bn_updateytdl";
-            this.bn_updateytdl.Size = new System.Drawing.Size(1171, 73);
-            this.bn_updateytdl.TabIndex = 0;
-            this.bn_updateytdl.Text = "Erzwinge Update von youtube-dl";
-            this.bn_updateytdl.UseVisualStyleBackColor = true;
-            this.bn_updateytdl.Click += new System.EventHandler(this.bn_updateytdl_Click);
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(11, 84);
-            this.label5.Margin = new System.Windows.Forms.Padding(8, 0, 8, 0);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(208, 32);
-            this.label5.TabIndex = 7;
-            this.label5.Text = "Download Pfad";
-            // 
-            // tb_downloadpath
-            // 
-            this.tb_downloadpath.Location = new System.Drawing.Point(656, 84);
-            this.tb_downloadpath.Name = "tb_downloadpath";
-            this.tb_downloadpath.Size = new System.Drawing.Size(524, 38);
-            this.tb_downloadpath.TabIndex = 8;
-            this.tb_downloadpath.TextChanged += new System.EventHandler(this.tb_downloadpath_TextChanged);
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(440, 68);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(157, 68);
-            this.button1.TabIndex = 9;
-            this.button1.Text = "Auwählen";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click_1);
-            // 
-            // tb_delay
-            // 
-            this.tb_delay.Location = new System.Drawing.Point(661, 320);
-            this.tb_delay.Margin = new System.Windows.Forms.Padding(8);
-            this.tb_delay.Name = "tb_delay";
-            this.tb_delay.Size = new System.Drawing.Size(524, 38);
-            this.tb_delay.TabIndex = 58;
-            this.tb_delay.Text = "10000";
-            this.tb_delay.TextChanged += new System.EventHandler(this.tb_delay_TextChanged);
-            this.tb_delay.Validating += new System.ComponentModel.CancelEventHandler(this.tb_delay_Validating);
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(14, 337);
-            this.label6.Margin = new System.Windows.Forms.Padding(8, 0, 8, 0);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(205, 44);
-            this.label6.TabIndex = 57;
-            this.label6.Text = "Delay (ms)";
-            // 
             // FrmSettings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(16F, 31F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1371, 1527);
+            this.ClientSize = new System.Drawing.Size(1371, 1630);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.gb_youtubedl);
             this.Controls.Add(this.gb_jdownloader);
