@@ -362,20 +362,73 @@ namespace Proxler2
                                     episode++;
                                     break;
                                 case SettingController.DownloaderEnum.youtubedl:
-                                    youtubeDLResponse response=youtubeDl.getLink(item.Link);
-                       
-                                    if (response.error.Count>0)
+                                    string filetype = "";
+                                    string download_url = "";
+                                    if (Hoster == "mp4upload") //mp4upload is not supported by youtube-dl anymore own logic
                                     {
-                                        Console.WriteLine(item.Link + "failed with" + response.error[0]);
-                                        break;
-                                    } else
+                                        string link = item.Link;
+                                        if(!item.Link.Contains("embed-"))
+                                        { //we need the iframe (only this thing contains the url
+                                            int posstart = item.Link.IndexOf('/', 5) + 1;
+                                            link = item.Link.Insert(posstart, "embed-");
+
+                                        }
+                                        if(!item.Link.Contains(".html"))
+                                        {
+                                            link = link + ".html";
+                                        }
+
+                                        // Add a user agent header in case the 
+                                        // requested URI contains a query.
+
+                                        string webpage = client.GetStringAsync(link).Result;
+                                        //extract a packed js object
+                                        int startindex = webpage.IndexOf("<script type='text/javascript'>eval(function(p,a,c,k,e,d)", 0);
+                                        string packed = webpage.Substring(startindex, webpage.IndexOf("</script>", startindex));
+                                        String[] data = packed.Split('|');
+                                        String subdomain = "";
+                                        String videokey = "";
+                                        String port = "";
+                                        for (int i = 0; i < data.Length; i++)
+                                        {
+                                            string data_item = data[i];
+                                            if (data_item == "IFRAME") //server name will be 5 elements after this
+                                            {
+                                                subdomain = data[i + 5] + "."; 
+                                            }
+                                            if (data_item == "video")
+                                            {
+                                                videokey = data[i + 1];
+                                                port =data[i + 2];
+                                            }
+
+                                        }
+                                        // construct url
+                                        download_url = "https://" + subdomain + "mp4upload.com:" + port + "/d/" + videokey + "/video.mp4";
+                                        filetype = "mp4";
+                                    }
+                                    else
                                     {
-                                        Console.WriteLine("try to download:" + response.filelink);
+                                        youtubeDLResponse response = youtubeDl.getLink(item.Link);
+                                        if (response.error.Count > 0)
+                                        {
+                                            Console.WriteLine(item.Link + "failed with" + response.error[0]);
+                                            break;
+
+                                        }
+                                        else
+                                        {
+                                            filetype = response.filelink.Substring(response.filelink.LastIndexOf('.')).Replace("\n", "");
+                                            download_url = response.filelink;
+                                        }
+
+                                    } 
+
+                                       Console.WriteLine("try to download:" + download_url);
                                         episode_found = true;
                                         Downloader downloader = new Downloader(this);
                                         downloader.episodeall = episodeall;
                                         downloader.backgroundworker = backgroundWorker1;
-                                        var filetype=response.filelink.Substring(response.filelink.LastIndexOf('.')).Replace("\n", "");
                                         var path = "";
                                         int p = (int)Environment.OSVersion.Platform;
                                         if ((p == 4) || (p == 6) || (p == 128))
@@ -386,12 +439,13 @@ namespace Proxler2
                                         {
                                             path = Data.downloadpath + "\\" + CleanFileName(Anime.myName) + "\\" + Anime.mySub + "\\" + item.Episode + filetype;
                                         }
-                                        downloader.Get(response.filelink,path); //wont work on linux
+                                        downloader.Get(download_url, path); //wont work on linux
                                         episodeall++;//mark episode as complete
                                         episode++;
-                                    } 
+                                     
 
                                     break;
+
                             }
                         }
 

@@ -37,11 +37,11 @@ namespace Proxler2
             this.label9 = new System.Windows.Forms.Label();
             this.btnSuchen = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
-            this.tb_ID = new System.Windows.Forms.TextBox();
+            this.tb_ID = new System.Windows.Forms.RichTextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.ComboLanguage = new System.Windows.Forms.ComboBox();
-            this.tb_LastEpisode = new System.Windows.Forms.TextBox();
-            this.tb_firstEpisode = new System.Windows.Forms.TextBox();
+            this.tb_LastEpisode = new System.Windows.Forms.RichTextBox();
+            this.tb_firstEpisode = new System.Windows.Forms.RichTextBox();
             this.bn_Download = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -63,7 +63,7 @@ namespace Proxler2
             this.label2 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.tb_downloadSpeed = new System.Windows.Forms.TextBox();
+            this.tb_downloadSpeed = new System.Windows.Forms.RichTextBox();
             this.label10 = new System.Windows.Forms.Label();
             this.lb_fileprogress = new System.Windows.Forms.Label();
             this.SuspendLayout();
@@ -149,6 +149,9 @@ namespace Proxler2
             this.tb_ID.Size = new System.Drawing.Size(433, 38);
             this.tb_ID.TabIndex = 37;
             this.tb_ID.TextChanged += new System.EventHandler(this.tb_ID_TextChanged);
+            this.tb_ID.SelectionFont = new System.Drawing.Font("Opensans", 7, System.Drawing.FontStyle.Bold);
+            this.tb_ID.SelectionColor = System.Drawing.Color.Black;
+
             // 
             // label8
             // 
@@ -187,6 +190,8 @@ namespace Proxler2
             this.tb_LastEpisode.Size = new System.Drawing.Size(433, 38);
             this.tb_LastEpisode.TabIndex = 34;
             this.tb_LastEpisode.Validating += new System.ComponentModel.CancelEventHandler(this.tb_LastEpisode_Validating);
+            this.tb_LastEpisode.SelectionFont = new System.Drawing.Font("Opensans", 7, System.Drawing.FontStyle.Bold);
+            this.tb_LastEpisode.SelectionColor = System.Drawing.Color.Black;
             // 
             // tb_firstEpisode
             // 
@@ -197,6 +202,8 @@ namespace Proxler2
             this.tb_firstEpisode.Size = new System.Drawing.Size(343, 38);
             this.tb_firstEpisode.TabIndex = 33;
             this.tb_firstEpisode.Validating += new System.ComponentModel.CancelEventHandler(this.tb_firstEpisode_Validating);
+            this.tb_firstEpisode.SelectionFont = new System.Drawing.Font("Opensans", 7, System.Drawing.FontStyle.Bold);
+            this.tb_firstEpisode.SelectionColor = System.Drawing.Color.Black;
             // 
             // bn_Download
             // 
@@ -397,6 +404,8 @@ namespace Proxler2
             this.tb_downloadSpeed.Size = new System.Drawing.Size(418, 38);
             this.tb_downloadSpeed.TabIndex = 68;
             this.tb_downloadSpeed.TextChanged += new System.EventHandler(this.tb_downloadSpeed_TextChanged);
+            this.tb_downloadSpeed.SelectionFont = new System.Drawing.Font("Opensans", 7, System.Drawing.FontStyle.Bold);
+            this.tb_downloadSpeed.SelectionColor = System.Drawing.Color.Black;
             // 
             // label10
             // 
@@ -415,6 +424,7 @@ namespace Proxler2
             this.lb_fileprogress.Size = new System.Drawing.Size(0, 32);
             this.lb_fileprogress.TabIndex = 70;
             this.lb_fileprogress.Click += new System.EventHandler(this.lb_fileprogress_Click);
+
             // 
             // FrmMain
             // 
@@ -472,11 +482,11 @@ namespace Proxler2
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Button btnSuchen;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TextBox tb_ID;
+        private System.Windows.Forms.RichTextBox tb_ID;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.ComboBox ComboLanguage;
-        private System.Windows.Forms.TextBox tb_LastEpisode;
-        private System.Windows.Forms.TextBox tb_firstEpisode;
+        private System.Windows.Forms.RichTextBox tb_LastEpisode;
+        private System.Windows.Forms.RichTextBox tb_firstEpisode;
         private System.Windows.Forms.Button bn_Download;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
@@ -498,7 +508,7 @@ namespace Proxler2
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox tb_downloadSpeed;
+        private System.Windows.Forms.RichTextBox tb_downloadSpeed;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label lb_fileprogress;
     }

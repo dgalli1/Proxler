@@ -23,6 +23,12 @@ namespace Proxler2
         public List<Hoster> Links;
         private BackgroundWorker backgroundWorker1;
 
+
+        public void DownloadWebpageAsync(string link)
+        {
+            string htmlCode = globClient.GetStringAsync(link).Result;
+
+        }
         public void FetchEpisodeAsync(string linkfirst, string id, int episode, string sub)
         {
 
