@@ -77,9 +77,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AniQue.cs" />
-    <Compile Include="AnixFile.cs" />
     <Compile Include="Downloader.cs" />
-    <Compile Include="FileAssociationHelper.cs" />
     <Compile Include="FrmHoster.cs">
       <SubType>Form</SubType>
     </Compile>

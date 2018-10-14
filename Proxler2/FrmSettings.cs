@@ -129,33 +129,5 @@ namespace Proxler2
         {
 
         }
-
-        private void gen_watchlist_files_Click(object sender, EventArgs e)
-        {
-            if(tb_downloadpath.Text.Length>1)
-            {
-                string parentDir = tb_downloadpath.Text;
-            String[] subDirs=Directory.GetDirectories(parentDir);
-                foreach (string animeDir in subDirs)
-                {
-                    //every animeDir should have a folder with subdirs specific to their language
-                    if (Directory.GetFiles(animeDir, "*.anix").Length != 0)
-                    {
-                        //checkiffilealreadyexists
-                        continue;
-                    }
-                    String[] languageDir = Directory.GetDirectories(animeDir);
-                    if(languageDir.Length==0)
-                    {//old dir format shit sucks
-                        //just get a list of all files sorted by name asc and put them into anix file 
-                    } else
-                    {
-
-                    }
-
-                }
-                //find every folder inside parent folder
-            }
-        }
     }
 }
