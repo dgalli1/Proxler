@@ -59,7 +59,11 @@ namespace Proxler2
             );
             foreach (var item in arr_output)
             {
-                if(item.StartsWith("http"))
+                if (item.Length < 1)
+                {
+                    continue;
+                }
+                if (item.StartsWith("http"))
                 {
                     response.filelink = item;
                 } else
@@ -74,12 +78,19 @@ namespace Proxler2
             );
             foreach (string item in arr_error)
             {
-                if(item.StartsWith("WARNING"))
+                if (item.Length < 1)
                 {
+                    continue;
+                }
+
+                if (item.StartsWith("WARNING"))
+                {
+
                     response.AddWarning(item);
-                } else
+
+            } else
                 {
-                    response.AddError(item);
+                response.AddError(item);
                 }
             }
             Console.WriteLine("Output: "+output);

@@ -185,24 +185,25 @@ namespace Proxler2
                 }
                 //end Source Jérome G
                 List<String> Language = new List<String>();
+                ComboLanguage.Items.Clear();
                 foreach (string value in untranslated_langs)
                 {
                    
                     if (value == "gersub")
                     {
-                        Language.Add("German Sub");
+                        ComboLanguage.Items.Add("German Sub");
                     }
                     if (value == "gerdub")
                     {
-                        Language.Add("German Dub");
+                        ComboLanguage.Items.Add("German Dub");
                     }
                     if (value == "engsub")
                     {
-                        Language.Add("English Sub");
+                        ComboLanguage.Items.Add("English Sub");
                     }
                     if (value == "engdub")
                     {
-                        Language.Add("English Dub");
+                        ComboLanguage.Items.Add("English Dub");
                     }
                 }
 
@@ -217,8 +218,7 @@ namespace Proxler2
                 ComboLanguage.Enabled = true;
                 tb_firstEpisode.Enabled = true;
                 tb_LastEpisode.Enabled = true;
-                ComboLanguage.DataSource = null;
-                ComboLanguage.DataSource = Language;
+
                 Language.Clear();
 
             }
@@ -241,12 +241,7 @@ namespace Proxler2
         {
 
         }
-
-        private void ComboLanguage_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
+   
         private void tb_LastEpisode_Validating(object sender, CancelEventArgs e)
         {
             try
@@ -368,7 +363,8 @@ namespace Proxler2
                                     break;
                                 case SettingController.DownloaderEnum.youtubedl:
                                     youtubeDLResponse response=youtubeDl.getLink(item.Link);
-                                    if(response.error.Count>0)
+                       
+                                    if (response.error.Count>0)
                                     {
                                         Console.WriteLine(item.Link + "failed with" + response.error[0]);
                                         break;
@@ -380,7 +376,16 @@ namespace Proxler2
                                         downloader.episodeall = episodeall;
                                         downloader.backgroundworker = backgroundWorker1;
                                         var filetype=response.filelink.Substring(response.filelink.LastIndexOf('.')).Replace("\n", "");
-                                        var path = Data.downloadpath + "\\" + CleanFileName(Anime.myName) + "\\" + Anime.mySub + "\\" + item.Episode + filetype;
+                                        var path = "";
+                                        int p = (int)Environment.OSVersion.Platform;
+                                        if ((p == 4) || (p == 6) || (p == 128))
+                                        {
+                                            path = Data.downloadpath + "/" + CleanFileName(Anime.myName) + "/" + Anime.mySub + "/" + item.Episode + filetype;
+                                        }
+                                        else
+                                        {
+                                            path = Data.downloadpath + "\\" + CleanFileName(Anime.myName) + "\\" + Anime.mySub + "\\" + item.Episode + filetype;
+                                        }
                                         downloader.Get(response.filelink,path); //wont work on linux
                                         episodeall++;//mark episode as complete
                                         episode++;
@@ -398,7 +403,7 @@ namespace Proxler2
                 if (!episode_found)
                 {
                     //todo add to logs
-                    error_log += "Couldnt add Episode" + episode + " because the hoster was unsupported or offline\n";
+                    error_log += "Couldn't add Episode" + episode + " because the hoster was unsupported or offline\n";
                     //episode not found add to logs and go to next episode
                     episodeall++;//mark episode as complete
                     episode++;

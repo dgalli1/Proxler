@@ -1,4 +1,6 @@
-﻿namespace Proxler2
+﻿using System;
+
+namespace Proxler2
 {
     partial class FrmMain
     {
@@ -175,7 +177,6 @@
             this.ComboLanguage.Name = "ComboLanguage";
             this.ComboLanguage.Size = new System.Drawing.Size(343, 39);
             this.ComboLanguage.TabIndex = 35;
-            this.ComboLanguage.SelectedIndexChanged += new System.EventHandler(this.ComboLanguage_SelectedIndexChanged);
             // 
             // tb_LastEpisode
             // 
@@ -459,6 +460,8 @@
             this.PerformLayout();
 
         }
+
+
 
         #endregion
 

@@ -48,6 +48,7 @@ namespace Proxler2
         }
         public String ytDlPath
         {
+
             get { return myytDlPath; }
         }
 
@@ -134,7 +135,16 @@ namespace Proxler2
 
             // Combine the base folder with your specific folder....
             string specificFolder = Path.Combine(folder, "Proxler");
-                myytDlPath = Path.Combine(specificFolder, "youtube-dl.exe");//set a path so it can download
+                int p = (int)Environment.OSVersion.Platform;
+                myytDlPath = "";
+                if ((p == 4) || (p == 6) || (p == 128))
+                {
+                    myytDlPath = "/usr/bin/youtube-dl";
+                }
+                else
+                {
+                    myytDlPath = Path.Combine(specificFolder, "youtube-dl.exe");//set a path so it can download
+                }
 
                 // Check if folder exists and if not, create it
                 if (!Directory.Exists(specificFolder))
