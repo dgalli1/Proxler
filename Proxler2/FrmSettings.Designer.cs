@@ -47,6 +47,7 @@
             this.radioButton1 = new System.Windows.Forms.RadioButton();
             this.radioButton2 = new System.Windows.Forms.RadioButton();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.gen_watchlist_files = new System.Windows.Forms.Button();
             this.gb_jdownloader.SuspendLayout();
             this.gb_youtubedl.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -118,10 +119,10 @@
             // 
             // bn_Speichern
             // 
-            this.bn_Speichern.Location = new System.Drawing.Point(60, 1361);
+            this.bn_Speichern.Location = new System.Drawing.Point(56, 1468);
             this.bn_Speichern.Margin = new System.Windows.Forms.Padding(8, 7, 8, 7);
             this.bn_Speichern.Name = "bn_Speichern";
-            this.bn_Speichern.Size = new System.Drawing.Size(1190, 67);
+            this.bn_Speichern.Size = new System.Drawing.Size(1162, 67);
             this.bn_Speichern.TabIndex = 7;
             this.bn_Speichern.Text = "Speichern";
             this.bn_Speichern.UseVisualStyleBackColor = true;
@@ -253,11 +254,22 @@
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Downloader";
             // 
+            // gen_watchlist_files
+            // 
+            this.gen_watchlist_files.Location = new System.Drawing.Point(55, 1344);
+            this.gen_watchlist_files.Name = "gen_watchlist_files";
+            this.gen_watchlist_files.Size = new System.Drawing.Size(1163, 83);
+            this.gen_watchlist_files.TabIndex = 17;
+            this.gen_watchlist_files.Text = "Generate JSON FIles";
+            this.gen_watchlist_files.UseVisualStyleBackColor = true;
+            this.gen_watchlist_files.Click += new System.EventHandler(this.gen_watchlist_files_Click);
+            // 
             // FrmSettings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(16F, 31F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1371, 1630);
+            this.Controls.Add(this.gen_watchlist_files);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.gb_youtubedl);
             this.Controls.Add(this.gb_jdownloader);
@@ -297,5 +309,6 @@
         private System.Windows.Forms.Button bn_updateytdl;
         private System.Windows.Forms.TextBox tb_delay;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Button gen_watchlist_files;
     }
 }
